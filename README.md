@@ -1,58 +1,97 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="200" alt="Laravel Logo">
 </p>
 
-## About Laravel
+<h1 align="center">O'Made Studio - Plateforme Web & Réservation</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <strong>Projet de fin d'études (TFE) - Conception et déploiement d'une solution digitale sur-mesure pour un studio d'enregistrement bruxellois.</strong>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Filament_PHP-F59E0B?style=for-the-badge&logo=php&logoColor=white" alt="Filament">
+  <img src="https://img.shields.io/badge/WebGL-990000?style=for-the-badge&logo=webgl&logoColor=white" alt="WebGL">
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📖 À propos du projet
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ce projet a été développé dans le cadre de mon **Travail de Fin d'Études (TFE)** en développement web. Il s'agit d'une refonte complète et sur-mesure de l'infrastructure digitale d'**O'Made Studio**, un studio d'enregistrement professionnel basé à Bruxelles.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+L'objectif principal était de remplacer des processus de réservation manuels (via messages Instagram) par une **plateforme centralisée, performante et juridiquement sécurisée**, tout en offrant une expérience utilisateur (UX) immersive et haut de gamme.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## ✨ Fonctionnalités clés
 
-## Agentic Development
+### 🎨 Front-End (Vitrine publique)
+*   **Design Immersif (Dark Mode / Glassmorphism)** : Interface premium pensée pour la culture urbaine.
+*   **Animations WebGL & Smooth Scrolling** : Intégration de ThreeJS/WebGL pour l'arrière-plan interactif et de Lenis pour un défilement fluide (60fps).
+*   **Tunnel de réservation "Frictionless"** : Formulaire optimisé pour capturer les leads B2C sans barrière cognitive (intégration du compte Instagram).
+*   **Conformité Légale Belge** : Intégration RGPD, Mentions Légales (BCE) et Conditions Générales de Vente (CGV).
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### ⚙️ Back-End (Panel d'Administration)
+*   **Dashboard Sécurisé (Filament PHP)** : Espace protégé par authentification forte.
+*   **Gestion des Réservations (CRUD)** : Tableau interactif avec changement d'états (En attente, Confirmé, Annulé).
+*   **Protection anti-vulnérabilités** : Architecture sécurisée contre les failles CSRF, XSS et les injections SQL (via l'ORM Eloquent).
 
+## 🛠️ Stack Technique
+
+*   **Framework Back-end** : Laravel 11.x (PHP 8.2)
+*   **Framework Front-end** : Tailwind CSS (Utility-first) & Alpine.js
+*   **Back-Office** : Filament PHP (TALL Stack)
+*   **Base de données** : SQLite / MySQL
+*   **Interactivité** : JavaScript Vanilla (ES6+), GSAP, Lenis
+
+## 🚀 Installation en local (Pour le Jury)
+
+Si vous souhaitez cloner ce projet et l'exécuter localement sur votre machine pour l'évaluer :
+
+**1. Cloner le dépôt :**
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/Civiziled/omade-studio.git
+cd omade-studio
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+**2. Installer les dépendances PHP et Node :**
+```bash
+composer install
+npm install
+npm run build
+```
 
-## Contributing
+**3. Configurer l'environnement :**
+Copiez le fichier `.env.example` et renommez-le en `.env`.
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**4. Base de données & Migrations :**
+Assurez-vous que votre base de données locale est configurée dans le `.env`, puis lancez les migrations :
+```bash
+php artisan migrate
+```
 
-## Code of Conduct
+**5. Créer un accès Administrateur :**
+Pour tester le Back-Office, générez un compte admin :
+```bash
+php artisan make:filament-user
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**6. Lancer le serveur local :**
+```bash
+php artisan serve
+```
+Le site sera accessible sur `http://localhost:8000` et le panel d'administration sur `http://localhost:8000/admin`.
 
-## Security Vulnerabilities
+## 👨‍💻 Auteur
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Fayssal Tnaya** - Étudiant en développement web.
+- **Superviseur TFE** : Tibault Six
+- **Année Académique** : 2025-2026
 
-## License
+## 📄 Licence
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ce projet est la propriété intellectuelle de son auteur et a été réalisé à des fins académiques. L'utilisation commerciale du code source par des tiers est soumise à autorisation. Le framework Laravel est sous licence MIT.
