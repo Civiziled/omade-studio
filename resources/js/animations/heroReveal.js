@@ -66,7 +66,7 @@ export const initHeroAnimations = () => {
             { opacity: 0, y: 50 },
             {
                 opacity: 1,
-                y: (i, target) => target.classList.contains('md:translate-y-8') ? 32 : 0, // Preserve the css translate
+                y: 0,
                 duration: 1,
                 stagger: 0.2,
                 ease: 'power3.out',

@@ -38,13 +38,13 @@
                         <div class="pt-6 border-t border-white/10 flex flex-col gap-4">
                             <p class="text-sm text-gray-500 uppercase tracking-widest font-semibold">Besoin d'aide avant de réserver ?</p>
                             <div class="flex items-center gap-6">
-                                <a href="tel:+3221234567" class="group flex items-center gap-3 hover:text-studio-accent transition-colors">
-                                    <span class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-studio-accent/20 transition-colors">📞</span>
-                                    <span class="text-white font-medium">+32 2 123 45 67</span>
+                                <a href="mailto:contact@omade-studio.be" class="group flex items-center gap-3 hover:text-studio-accent transition-colors">
+                                    <span class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-studio-accent/20 transition-colors">✉️</span>
+                                    <span class="text-white font-medium">contact@omade-studio.be</span>
                                 </a>
-                                <a href="https://instagram.com/omade.studio" target="_blank" class="group flex items-center gap-3 hover:text-studio-accent transition-colors">
+                                <a href="https://instagram.com/Saws.97" target="_blank" class="group flex items-center gap-3 hover:text-studio-accent transition-colors">
                                     <span class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-studio-accent/20 transition-colors">📸</span>
-                                    <span class="text-white font-medium">@omade.studio</span>
+                                    <span class="text-white font-medium">@Saws.97</span>
                                 </a>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
 
                 <!-- Right: Form (Glassmorphism) -->
                 <div class="order-1 lg:order-2 reveal-up">
-                    <form id="booking-form" class="bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] shadow-2xl border border-white/10 relative overflow-hidden">
+                    <form id="booking-form" enctype="multipart/form-data" class="bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] shadow-2xl border border-white/10 relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-studio-accent to-purple-600"></div>
                         @csrf
                         
@@ -70,12 +70,8 @@
                                 </div>
                             </div>
 
-                            <!-- Ligne 2 : Tel & Insta -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="relative group">
-                                    <input type="tel" name="client_phone" id="client_phone" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent">
-                                    <label for="client_phone" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Numéro de téléphone</label>
-                                </div>
+                            <!-- Ligne 2 : Insta -->
+                            <div class="grid grid-cols-1 gap-6">
                                 <div class="relative group">
                                     <input type="text" name="instagram_handle" id="instagram_handle" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent">
                                     <label for="instagram_handle" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Instagram (optionnel)</label>
@@ -100,7 +96,31 @@
                                 </div>
                             </div>
 
-                            <!-- Ligne 4 -->
+                            <!-- Ligne 4 : Service -->
+                            <div class="relative group">
+                                <select name="service" id="service" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all appearance-none cursor-pointer">
+                                    <option value="" disabled {{ !request('service') ? 'selected' : '' }} hidden>Sélectionnez un service...</option>
+                                    <option value="Enregistrement (35€/h)" class="bg-studio-dark text-white" {{ request('service') == 'Enregistrement (35€/h)' ? 'selected' : '' }}>Enregistrement - 35€/heure</option>
+                                    <option value="Mastering (50€)" class="bg-studio-dark text-white" {{ request('service') == 'Mastering (50€)' ? 'selected' : '' }}>Mastering Professionnel - 50€</option>
+                                    <option value="Mixage 100€ (Instru WAV + Voix)" class="bg-studio-dark text-white" {{ request('service') == 'Mixage 100€ (Instru WAV + Voix)' ? 'selected' : '' }}>Mixage - Instru WAV + Voix (100€)</option>
+                                    <option value="Mixage 190€ (Pistes Séparées + Voix)" class="bg-studio-dark text-white" {{ request('service') == 'Mixage 190€ (Pistes Séparées + Voix)' ? 'selected' : '' }}>Mixage - Pistes Séparées + Voix (190€)</option>
+                                    <option value="Mixage 300€ (Instru Sur Mesure + Voix)" class="bg-studio-dark text-white" {{ request('service') == 'Mixage 300€ (Instru Sur Mesure + Voix)' ? 'selected' : '' }}>Mixage Premium - Instru Sur Mesure + Voix (300€)</option>
+                                </select>
+                                <label for="service" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Service souhaité</label>
+                                <!-- Custom arrow for select -->
+                                <div class="absolute inset-y-0 right-5 flex items-center px-2 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+
+                            <!-- Ligne 5 : Fichier Musique -->
+                            <div class="relative group">
+                                <!-- On enlève "peer" etc pour le type="file" car le style est géré différemment -->
+                                <input type="file" name="music_file" id="music_file" accept="audio/*" class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-studio-accent file:text-white hover:file:bg-white hover:file:text-studio-dark">
+                                <p class="text-gray-500 text-xs mt-2 ml-2">Uploadez votre maquette / instru (WAV, MP3, M4A) - Max 20Mo</p>
+                            </div>
+
+                            <!-- Ligne 5 -->
                             <div class="relative group">
                                 <textarea name="notes" id="notes" rows="3" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent resize-none"></textarea>
                                 <label for="notes" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Besoins spécifiques (matériel, ingé son...)</label>
@@ -118,4 +138,5 @@
             </div>
         </div>
     </section>
+
 </x-layouts.app>

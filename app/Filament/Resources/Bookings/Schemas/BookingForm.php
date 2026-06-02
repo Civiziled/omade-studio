@@ -22,9 +22,6 @@ class BookingForm
                 TextInput::make('client_email')
                     ->email()
                     ->required(),
-                TextInput::make('client_phone')
-                    ->tel()
-                    ->required(),
                 TextInput::make('instagram_handle')
                     ->prefix('@'),
                 DatePicker::make('booking_date')
@@ -43,6 +40,17 @@ class BookingForm
                     ->required()
                     ->default('pending'),
                 Textarea::make('notes')
+                    ->columnSpanFull(),
+                \Filament\Forms\Components\FileUpload::make('music_file_path')
+                    ->label('Fichier Audio Client')
+                    ->directory('bookings/music')
+                    ->acceptedFileTypes(['audio/*'])
+                    ->downloadable()
+                    ->columnSpanFull(),
+                \Filament\Forms\Components\Placeholder::make('audio_preview')
+                    ->label('Aperçu Audio')
+                    ->content(fn ($record) => $record && $record->music_file_path ? new \Illuminate\Support\HtmlString('<audio controls src="'.\Illuminate\Support\Facades\Storage::url($record->music_file_path).'" class="w-full mt-2"></audio>') : 'Aucun fichier audio fourni.')
+                    ->visible(fn ($record) => $record !== null)
                     ->columnSpanFull(),
             ]);
     }

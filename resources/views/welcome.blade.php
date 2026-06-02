@@ -7,7 +7,7 @@
                 O'Made <span class="text-transparent bg-clip-text bg-gradient-to-r from-studio-accent to-purple-500">Studio.</span>
             </h1>
             <p class="hero-subtitle text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto mb-10 opacity-0 translate-y-8">
-                L'art du son repensé. Un espace créatif hybride alliant chaleur analogique et précision numérique, conçu pour révéler l'essence de votre musique.
+                Créer, c’est se confier. O’Made Studio est un espace pensé pour les artistes qui cherchent un son soigné, une écoute attentive, et un résultat qui leur ressemble vraiment.
             </p>
             <div class="hero-cta opacity-0 flex gap-6 justify-center">
                 <a href="#histoire" class="inline-block bg-white text-studio-dark font-semibold px-8 py-4 rounded-full hover:bg-gray-200 transition-all duration-300">
@@ -32,15 +32,18 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1 relative group rounded-3xl overflow-hidden image-reveal">
                 <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" alt="Console O'Made" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                <img src="{{ asset('genese.jpg') }}" alt="Studio O'Made" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 grayscale group-hover:grayscale-0">
             </div>
             
             <div class="order-1 lg:order-2 space-y-8">
                 <h2 class="text-sm font-bold tracking-[0.3em] text-studio-accent uppercase reveal-up">La Genèse</h2>
                 <h3 class="text-4xl md:text-5xl font-display font-semibold leading-tight reveal-up">Né d'une passion obsessionnelle pour la perfection sonore.</h3>
                 <div class="text-gray-400 space-y-6 text-lg font-light reveal-up">
-                    <p>O'Made n'est pas qu'un simple studio d'enregistrement. C'est un sanctuaire dédié aux artistes qui refusent les compromis. Fondé sur la conviction que chaque détail compte, notre espace a été pensé acoustiquement et technologiquement pour capturer l'émotion pure.</p>
-                    <p>De nos microphones vintage soigneusement restaurés à notre console analogique de légende, chaque pièce de notre équipement a une histoire, prête à se mêler à la vôtre.</p>
+                    <p>Tout a commencé quand j’avais 15 ans. Pas avec un projet, pas avec un business plan, juste de la curiosité. Un son qui m’intrigue, une envie de comprendre comment il est construit, et puis cette flamme qui ne s’est plus jamais éteinte.</p>
+                    <p>Au fil des années, la curiosité est devenue une envie de créer. L’envie de créer est devenue un apprentissage. Et l’apprentissage est devenu un métier. Aujourd’hui, à 28 ans, je suis ingénieur du son et O’Made, c’est l’aboutissement de tout ça.</p>
+                    <p>O’Made, c’est Home + Made. Fait maison.</p>
+                    <p>Pas parce que c’est artisanal dans le sens basique du terme. Mais parce que tout ce qui sort d’ici porte quelque chose de vrai, quelque chose de nous.</p>
+                    <p>Quand tu rentres dans ce studio, on ne travaille pas pour toi, on crée avec toi. Tes connaissances, tes émotions, ma technique, mon oreille. On mélange tout ça, on construit ensemble, et ce qui sort, que ce soit un single, un EP ou un album, c’est un son qui a un corps, une émotion, une puissance.</p>
                 </div>
             </div>
         </div>
@@ -56,21 +59,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 services-grid">
                 <!-- Service 1 -->
-                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
+                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">🎙️</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Enregistrement</h4>
                     <p class="text-gray-400 font-light leading-relaxed">Cabines insonorisées à l'acoustique modulable. Une collection de micros premium pour capter chaque nuance de votre voix et de vos instruments.</p>
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group translate-y-0 md:translate-y-8">
+                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">🎛️</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Mixage</h4>
                     <p class="text-gray-400 font-light leading-relaxed">L'équilibre parfait entre chaleur analogique et flexibilité numérique. Nous donnons profondeur, largeur et impact à vos pistes.</p>
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
+                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">💽</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Mastering</h4>
                     <p class="text-gray-400 font-light leading-relaxed">L'étape finale cruciale. Un polissage sur-mesure pour garantir que votre morceau sonne massivement sur toutes les plateformes.</p>

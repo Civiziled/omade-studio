@@ -11,9 +11,9 @@
                 
                 <h2 class="text-2xl text-white font-semibold mt-8 mb-4">Article 1 - L'Éditeur</h2>
                 <p>L'édition et la direction de la publication du site O'Made Studio est assurée par la société O'Made Studio, Société à Responsabilité Limitée (SRL) au capital de 10 000 euros, inscrite à la Banque-Carrefour des Entreprises (BCE) sous le numéro 0812.345.678, dont le siège social est situé au :</p>
-                <p>123 Avenue du Son, 1000 Bruxelles, Belgique.<br>
+                <p>Haachtsesteenweg 42, 1831 Diegem, Belgique.<br>
                 Téléphone : +32 2 123 45 67<br>
-                Adresse e-mail : hello@omade-studio.com<br>
+                Adresse e-mail : contact@omade-studio.be<br>
                 Numéro de TVA : BE 0812.345.678.</p>
                 <p>Le Directeur de la publication est Monsieur Fares, en sa qualité de Président.</p>
 

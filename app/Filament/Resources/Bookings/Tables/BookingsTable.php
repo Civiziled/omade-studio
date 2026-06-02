@@ -20,8 +20,6 @@ class BookingsTable
                     ->searchable(),
                 TextColumn::make('client_email')
                     ->searchable(),
-                TextColumn::make('client_phone')
-                    ->searchable(),
                 TextColumn::make('booking_date')
                     ->date()
                     ->sortable(),

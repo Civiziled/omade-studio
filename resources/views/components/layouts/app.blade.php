@@ -18,11 +18,12 @@
     <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
 
     <!-- Header / Navbar (Simplified) -->
-    <header class="fixed top-0 left-0 w-full z-50 p-6 mix-blend-difference">
+    <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="{{ route('home') }}" class="text-2xl font-display font-bold tracking-tight">O'Made<span class="text-studio-accent">.</span></a>
             <ul class="flex gap-8 text-sm font-medium">
                 <li><a href="{{ route('gallery') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('gallery') ? 'text-studio-accent' : '' }}">Galerie</a></li>
+                <li><a href="{{ route('tarifs') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('tarifs') ? 'text-studio-accent' : '' }}">Tarifs</a></li>
                 <li><a href="{{ route('booking') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('booking') ? 'text-studio-accent' : '' }}">Réserver</a></li>
                 <li><a href="{{ route('contact') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('contact') ? 'text-studio-accent' : '' }}">Contact</a></li>
             </ul>
@@ -34,6 +35,25 @@
         {{ $slot }}
     </main>
 
+    <!-- Floating Audio Toggle -->
+    <button id="audio-toggle" class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(205,127,50,0.1)] hover:border-studio-accent hover:scale-110 hover:text-studio-accent transition-all group group-hover:shadow-[0_0_20px_rgba(205,127,50,0.4)]" aria-label="Play/Pause Background Music">
+        <!-- SVG Play -->
+        <svg id="audio-icon-play" class="w-6 h-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <!-- SVG Pause (Hidden by default) -->
+        <svg id="audio-icon-pause" class="w-6 h-6 hidden transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <!-- Audio Waves Animation (Hidden by default) -->
+        <div id="audio-waves" class="absolute -top-1 -right-1 w-4 h-4 hidden flex items-end justify-center gap-[2px]">
+            <div class="w-[2px] h-[6px] bg-studio-accent animate-[bounce_0.8s_infinite] rounded-full"></div>
+            <div class="w-[2px] h-[10px] bg-studio-accent animate-[bounce_1s_infinite_0.2s] rounded-full"></div>
+            <div class="w-[2px] h-[4px] bg-studio-accent animate-[bounce_0.9s_infinite_0.4s] rounded-full"></div>
+        </div>
+    </button>
+
     <!-- Professional Footer -->
     <footer class="bg-black pt-20 pb-10 relative z-10 border-t border-white/10 mt-auto overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-studio-accent/5 via-black to-black pointer-events-none"></div>
@@ -43,7 +63,7 @@
                 <div class="md:w-1/3 space-y-6">
                     <a href="{{ route('home') }}" class="text-3xl font-display font-bold tracking-tight text-white block">O'Made<span class="text-studio-accent">.</span></a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-                        Le studio d'enregistrement de référence à Bruxelles. Équipement premium, acoustique parfaite et accompagnement sur-mesure.
+                        Le studio d'enregistrement de référence à Diegem. Équipement premium, acoustique parfaite et accompagnement sur-mesure.
                     </p>
                 </div>
 
@@ -54,6 +74,7 @@
                         <ul class="space-y-3">
                             <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-studio-accent transition-colors text-sm flex items-center gap-2 group"><span class="w-1 h-1 bg-studio-accent rounded-full opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"></span>Accueil</a></li>
                             <li><a href="{{ route('gallery') }}" class="text-gray-400 hover:text-studio-accent transition-colors text-sm flex items-center gap-2 group"><span class="w-1 h-1 bg-studio-accent rounded-full opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"></span>Galerie</a></li>
+                            <li><a href="{{ route('tarifs') }}" class="text-gray-400 hover:text-studio-accent transition-colors text-sm flex items-center gap-2 group"><span class="w-1 h-1 bg-studio-accent rounded-full opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"></span>Tarifs</a></li>
                             <li><a href="{{ route('booking') }}" class="text-gray-400 hover:text-studio-accent transition-colors text-sm flex items-center gap-2 group"><span class="w-1 h-1 bg-studio-accent rounded-full opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0"></span>Réserver</a></li>
                             <li class="pt-2"><a href="{{ route('legal.mentions') }}" class="text-gray-500 hover:text-white transition-colors text-xs">Mentions Légales</a></li>
                             <li><a href="{{ route('legal.cgv') }}" class="text-gray-500 hover:text-white transition-colors text-xs">Conditions Générales de Vente</a></li>
@@ -67,12 +88,11 @@
                     <div class="text-left md:text-right">
                         <h4 class="text-white font-semibold uppercase tracking-widest text-sm mb-6">Nous Suivre</h4>
                         <div class="flex md:justify-end gap-4 mb-8">
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-studio-accent hover:border-studio-accent transition-all transform hover:scale-110">📸</a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-studio-accent hover:border-studio-accent transition-all transform hover:scale-110">🎵</a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-studio-accent hover:border-studio-accent transition-all transform hover:scale-110">🎥</a>
+                            <a href="https://instagram.com/Saws.97" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-studio-accent hover:border-studio-accent transition-all transform hover:scale-110">📸</a>
+                            <a href="https://tiktok.com/@omade.be" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-studio-accent hover:border-studio-accent transition-all transform hover:scale-110">🎵</a>
                         </div>
                         <p class="text-sm text-gray-500 mb-2">Une question rapide ?</p>
-                        <a href="mailto:hello@omade-studio.com" class="text-white font-medium hover:text-studio-accent transition-colors block">hello@omade-studio.com</a>
+                        <a href="mailto:contact@omade-studio.be" class="text-white font-medium hover:text-studio-accent transition-colors block">contact@omade-studio.be</a>
                     </div>
                 </div>
             </div>

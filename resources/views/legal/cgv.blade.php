@@ -33,7 +33,7 @@
                 <p>O'Made Studio s'engage à conserver les sessions de travail et les fichiers audio (projets, pistes) pendant une durée de 3 mois à compter de la date de la dernière session. Au-delà de ce délai, aucune garantie de conservation n'est assurée. Il appartient au Client de prévoir un support de stockage adéquat (disque dur externe) pour la sauvegarde immédiate de ses projets.</p>
 
                 <h2 class="text-2xl text-white font-semibold mt-8 mb-4">Article 7 : Litiges et Juridiction compétente</h2>
-                <p>Les présentes CGV sont soumises à la loi belge. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut de résolution amiable, compétence exclusive est attribuée aux tribunaux compétents de l'arrondissement judiciaire de Bruxelles.</p>
+                <p>Les présentes CGV sont soumises à la loi belge. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut de résolution amiable, compétence exclusive est attribuée aux tribunaux compétents de l'arrondissement judiciaire de Diegem.</p>
             </div>
         </div>
     </section>

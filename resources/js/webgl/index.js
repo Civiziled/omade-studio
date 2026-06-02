@@ -30,7 +30,7 @@ export const initWebGL = () => {
 
     const material = new THREE.PointsMaterial({
         size: 0.02,
-        color: 0xff3366, // studio-accent
+        color: 0xcd7f32, // studio-accent
         transparent: true,
         opacity: 0.8,
         blending: THREE.AdditiveBlending

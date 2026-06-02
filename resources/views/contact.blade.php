@@ -22,28 +22,21 @@
                             <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-studio-accent group-hover:border-studio-accent transition-all duration-300 transform group-hover:scale-110">📍</div>
                             <div>
                                 <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Notre Adresse</p>
-                                <p class="text-lg text-white font-medium">123 Avenue du Son, 1000 Bruxelles</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6 group">
-                            <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-studio-accent group-hover:border-studio-accent transition-all duration-300 transform group-hover:scale-110">📞</div>
-                            <div>
-                                <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Téléphone</p>
-                                <p class="text-lg text-white font-medium">+32 2 123 45 67</p>
+                                <p class="text-lg text-white font-medium">Haachtsesteenweg 42, 1831 Diegem</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-6 group">
                             <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-studio-accent group-hover:border-studio-accent transition-all duration-300 transform group-hover:scale-110">✉️</div>
                             <div>
-                                <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Email</p>
-                                <p class="text-lg text-white font-medium">hello@omade-studio.com</p>
+                                <h3 class="text-white font-bold text-xl mb-1">Email</h3>
+                                <a href="mailto:contact@omade-studio.be" class="text-gray-400 hover:text-studio-accent transition-colors">contact@omade-studio.be</a>
                             </div>
                         </div>
                         <div class="flex items-center gap-6 group">
                             <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-studio-accent group-hover:border-studio-accent transition-all duration-300 transform group-hover:scale-110">📸</div>
                             <div>
                                 <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Instagram</p>
-                                <a href="https://instagram.com/omade.studio" target="_blank" class="text-lg text-white font-medium hover:text-studio-accent transition-colors">@omade.studio</a>
+                                <a href="https://instagram.com/Saws.97" target="_blank" class="text-lg text-white font-medium hover:text-studio-accent transition-colors">@Saws.97</a>
                             </div>
                         </div>
                     </div>

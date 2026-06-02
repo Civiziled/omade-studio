@@ -32,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Dark)
             ->font('Space Grotesk') // Using a nice modern font
             ->colors([
-                'primary' => \Filament\Support\Colors\Color::hex('#FF2A6D'), // Our studio accent color
+                'primary' => \Filament\Support\Colors\Color::hex('#CD7F32'), // Our studio accent color
                 'gray' => \Filament\Support\Colors\Color::Zinc,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
