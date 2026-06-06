@@ -36,7 +36,6 @@ class BookingsTable
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'pending' => 'warning',
-                        'approved' => 'info',
                         'confirmed' => 'success',
                         'cancelled' => 'danger',
                         'completed' => 'gray',
@@ -99,7 +98,7 @@ class BookingsTable
                     ->action(function (Booking $record, array $data) {
                         $record->update([
                             'price' => $data['price'],
-                            'status' => 'approved',
+                            'status' => 'confirmed',
                             'payment_status' => 'unpaid',
                         ]);
 

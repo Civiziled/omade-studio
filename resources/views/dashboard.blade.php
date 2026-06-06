@@ -53,9 +53,9 @@
                                         <td class="py-4">
                                             @if($booking->status === 'pending')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">En attente</span>
-                                            @elseif($booking->status === 'approved')
+                                            @elseif($booking->status === 'confirmed' && $booking->payment_status === 'unpaid')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">Acceptée - À Payer</span>
-                                            @elseif($booking->status === 'confirmed')
+                                            @elseif($booking->status === 'confirmed' && $booking->payment_status === 'paid')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">Payée & Confirmée</span>
                                             @elseif($booking->status === 'cancelled')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">Annulée</span>
