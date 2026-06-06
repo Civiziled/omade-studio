@@ -56,7 +56,11 @@
                                             @elseif($booking->status === 'confirmed' && $booking->payment_status === 'unpaid')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">Acceptée - À Payer</span>
                                             @elseif($booking->status === 'confirmed' && $booking->payment_status === 'paid')
-                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">Payée & Confirmée</span>
+                                                @if($booking->payment_method === 'cash')
+                                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Caution Payée - Reste {{ $booking->price / 2 }} € sur place</span>
+                                                @else
+                                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">Payée & Confirmée</span>
+                                                @endif
                                             @elseif($booking->status === 'cancelled')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">Annulée</span>
                                             @else

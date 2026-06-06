@@ -17,6 +17,7 @@ class BookingController extends Controller
             'service' => 'required|string',
             'music_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg|max:20480', // 20MB max
             'notes' => 'nullable|string',
+            'payment_method' => 'required|in:card,cash',
         ]);
 
         // Vérifier les overbookings (chevauchement de créneaux)
@@ -55,6 +56,7 @@ class BookingController extends Controller
             'start_time' => $validated['start_time'],
             'end_time' => $validated['end_time'],
             'status' => 'pending',
+            'payment_method' => $validated['payment_method'],
             'notes' => $validated['notes'],
             'music_file_path' => $musicFilePath,
         ]);

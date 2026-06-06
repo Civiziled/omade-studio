@@ -47,6 +47,13 @@ class BookingsTable
                         'paid' => 'success',
                         'refunded' => 'danger',
                     }),
+                TextColumn::make('payment_method')
+                    ->label('Méthode de Paiement')
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'card' => 'Carte (100% en ligne)',
+                        'cash' => 'Espèces (Caution 50%)',
+                        default => $state,
+                    }),
                 TextColumn::make('price')
                     ->money('EUR')
                     ->sortable(),
@@ -103,14 +110,20 @@ class BookingsTable
                         ]);
 
                         $stripe = new \Stripe\StripeClient(config('services.stripe.secret'));
+                        
+                        $amountToPay = $record->payment_method === 'cash' ? $data['price'] / 2 : $data['price'];
+                        $sessionName = $record->payment_method === 'cash' 
+                            ? 'Caution Session O\'Made Studio - ' . $record->booking_date->format('d/m/Y')
+                            : 'Session O\'Made Studio - ' . $record->booking_date->format('d/m/Y');
+
                         $checkout_session = $stripe->checkout->sessions->create([
                             'line_items' => [[
                                 'price_data' => [
                                     'currency' => 'eur',
                                     'product_data' => [
-                                        'name' => 'Session O\'Made Studio - ' . $record->booking_date->format('d/m/Y'),
+                                        'name' => $sessionName,
                                     ],
-                                    'unit_amount' => $data['price'] * 100,
+                                    'unit_amount' => $amountToPay * 100,
                                 ],
                                 'quantity' => 1,
                             ]],

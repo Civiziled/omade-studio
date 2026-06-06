@@ -124,6 +124,38 @@
                                 <textarea name="notes" id="notes" rows="3" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent resize-none"></textarea>
                                 <label for="notes" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Besoins spécifiques (matériel, ingé son...)</label>
                             </div>
+
+                            <!-- Ligne 6 : Méthode de paiement -->
+                            <div class="relative group">
+                                <label class="block text-gray-400 text-sm mb-3">Méthode de paiement</label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="payment_method" value="card" checked class="peer sr-only">
+                                        <div class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white peer-checked:border-studio-accent peer-checked:ring-1 peer-checked:ring-studio-accent hover:bg-zinc-800/50 transition-all flex flex-col gap-2">
+                                            <div class="flex items-center gap-3">
+                                                <span class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center peer-checked:border-studio-accent">
+                                                    <span class="w-2 h-2 rounded-full bg-studio-accent opacity-0 peer-checked:opacity-100"></span>
+                                                </span>
+                                                <span class="font-semibold">Carte bancaire</span>
+                                            </div>
+                                            <p class="text-xs text-gray-500 pl-7">100% du montant payé en ligne</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="payment_method" value="cash" class="peer sr-only">
+                                        <div class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white peer-checked:border-studio-accent peer-checked:ring-1 peer-checked:ring-studio-accent hover:bg-zinc-800/50 transition-all flex flex-col gap-2">
+                                            <div class="flex items-center gap-3">
+                                                <span class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center peer-checked:border-studio-accent">
+                                                    <span class="w-2 h-2 rounded-full bg-studio-accent opacity-0 peer-checked:opacity-100"></span>
+                                                </span>
+                                                <span class="font-semibold">Espèces sur place</span>
+                                            </div>
+                                            <p class="text-xs text-gray-500 pl-7">50% d'acompte requis en ligne</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         
                         <div id="booking-feedback" class="hidden mt-6 text-sm px-4 py-3 rounded-xl"></div>

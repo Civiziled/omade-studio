@@ -23,12 +23,20 @@
                 <p style="margin:0;"><strong>Date :</strong> {{ $booking->booking_date->format('d/m/Y') }}</p>
                 <p style="margin:0;"><strong>Horaires :</strong> {{ $booking->start_time->format('H:i') }} - {{ $booking->end_time->format('H:i') }}</p>
                 <p style="margin:0;"><strong>Montant total :</strong> {{ $booking->price }} €</p>
+                @if($booking->payment_method === 'cash')
+                    <p style="margin:0; color:#cd7f32; font-weight:bold;">Acompte à régler aujourd'hui : {{ $booking->price / 2 }} €</p>
+                    <p style="margin:0; font-size:0.9em;">(Le reste sera à régler en espèces sur place)</p>
+                @endif
             </div>
             
             <p>Il ne vous reste plus qu'à régler votre session pour bloquer définitivement votre créneau horaire. Le paiement est 100% sécurisé via Stripe.</p>
             
             <div style="text-align: center;">
-                <a href="{{ $checkoutUrl }}" class="btn">Payer ma session ({{ $booking->price }} €)</a>
+                @if($booking->payment_method === 'cash')
+                    <a href="{{ $checkoutUrl }}" class="btn">Payer ma caution ({{ $booking->price / 2 }} €)</a>
+                @else
+                    <a href="{{ $checkoutUrl }}" class="btn">Payer ma session ({{ $booking->price }} €)</a>
+                @endif
             </div>
             
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.95em;">
