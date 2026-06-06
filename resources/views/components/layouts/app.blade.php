@@ -81,21 +81,21 @@
     </main>
 
     <!-- Floating Audio Toggle -->
-    <button id="audio-toggle" class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(205,127,50,0.1)] hover:border-studio-accent hover:scale-110 hover:text-studio-accent transition-all group group-hover:shadow-[0_0_20px_rgba(205,127,50,0.4)]" aria-label="Play/Pause Background Music">
+    <button id="audio-toggle" class="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 w-10 h-10 md:w-12 md:h-12 bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(205,127,50,0.1)] hover:border-studio-accent hover:scale-110 hover:text-studio-accent transition-all group group-hover:shadow-[0_0_20px_rgba(205,127,50,0.4)]" aria-label="Play/Pause Background Music">
         <!-- SVG Play -->
-        <svg id="audio-icon-play" class="w-6 h-6 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="audio-icon-play" class="w-4 h-4 md:w-5 md:h-5 transition-all ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <!-- SVG Pause (Hidden by default) -->
-        <svg id="audio-icon-pause" class="w-6 h-6 hidden transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="audio-icon-pause" class="w-4 h-4 md:w-5 md:h-5 hidden transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         <!-- Audio Waves Animation (Hidden by default) -->
-        <div id="audio-waves" class="absolute -top-1 -right-1 w-4 h-4 hidden flex items-end justify-center gap-[2px]">
-            <div class="w-[2px] h-[6px] bg-studio-accent animate-[bounce_0.8s_infinite] rounded-full"></div>
-            <div class="w-[2px] h-[10px] bg-studio-accent animate-[bounce_1s_infinite_0.2s] rounded-full"></div>
-            <div class="w-[2px] h-[4px] bg-studio-accent animate-[bounce_0.9s_infinite_0.4s] rounded-full"></div>
+        <div id="audio-waves" class="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 hidden flex items-end justify-center gap-[1px] md:gap-[2px]">
+            <div class="w-[1px] md:w-[2px] h-[4px] md:h-[6px] bg-studio-accent animate-[bounce_0.8s_infinite] rounded-full"></div>
+            <div class="w-[1px] md:w-[2px] h-[7px] md:h-[10px] bg-studio-accent animate-[bounce_1s_infinite_0.2s] rounded-full"></div>
+            <div class="w-[1px] md:w-[2px] h-[3px] md:h-[4px] bg-studio-accent animate-[bounce_0.9s_infinite_0.4s] rounded-full"></div>
         </div>
     </button>
 
