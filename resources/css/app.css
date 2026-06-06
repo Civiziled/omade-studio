@@ -28,3 +28,5 @@ html.lenis, html.lenis body {
 [x-cloak] { 
   display: none !important; 
 }
+
+.cache-buster-1 { opacity: 0.99; }
