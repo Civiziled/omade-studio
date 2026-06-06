@@ -52,12 +52,12 @@
                 </div>
 
                 <!-- Right: Form (Glassmorphism) -->
-                <div class="order-1 lg:order-2 reveal-up">
-                    <form id="booking-form" enctype="multipart/form-data" class="bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-[2rem] shadow-2xl border border-white/10 relative overflow-hidden">
+                <div class="order-1 lg:order-2 reveal-up w-full max-w-full">
+                    <form id="booking-form" enctype="multipart/form-data" class="bg-white/5 backdrop-blur-xl p-5 sm:p-8 md:p-10 rounded-3xl md:rounded-[2rem] shadow-2xl border border-white/10 relative overflow-hidden w-full max-w-full box-border">
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-studio-accent to-purple-600"></div>
                         @csrf
                         
-                        <div class="space-y-6">
+                        <div class="space-y-6 w-full max-w-full">
                             <!-- Ligne 1 : Utilisateur connecté -->
                             <div class="bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 flex items-center justify-between">
                                 <div>
@@ -144,8 +144,8 @@
                             </script>
 
                             <!-- Ligne 4 : Service -->
-                            <div class="relative group">
-                                <select name="service" id="service" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all appearance-none cursor-pointer">
+                            <div class="relative group w-full max-w-full">
+                                <select name="service" id="service" required class="peer w-full max-w-full overflow-hidden text-ellipsis bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all appearance-none cursor-pointer">
                                     <option value="" disabled {{ !request('service') ? 'selected' : '' }} hidden>Sélectionnez un service...</option>
                                     <option value="Enregistrement (35€/h)" class="bg-studio-dark text-white" {{ request('service') == 'Enregistrement (35€/h)' ? 'selected' : '' }}>Enregistrement - 35€/heure</option>
                                     <option value="Mastering (50€)" class="bg-studio-dark text-white" {{ request('service') == 'Mastering (50€)' ? 'selected' : '' }}>Mastering Professionnel - 50€</option>
