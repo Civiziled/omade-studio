@@ -31,6 +31,14 @@
                 <a href="{{ $checkoutUrl }}" class="btn">Payer ma session ({{ $booking->price }} €)</a>
             </div>
             
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.95em;">
+                <h4 style="margin-bottom: 5px; color: #333;">Informations pratiques :</h4>
+                <p style="margin: 0; color: #555;"><strong>O'Made Studio</strong><br/>
+                📍 [Adresse de ton studio, ex: 12 Rue de la Musique, 1000 Bruxelles]<br/>
+                📞 Téléphone : [Ton numéro de téléphone]<br/>
+                ✉️ Email : contact@omade-studio.be</p>
+            </div>
+            
             <p style="margin-top: 30px; font-size: 0.9em; color: #666;">Si vous avez une question, n'hésitez pas à répondre directement à cet email.</p>
         </div>
     </div>
