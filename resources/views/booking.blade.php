@@ -57,7 +57,7 @@
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-studio-accent to-purple-600"></div>
                         @csrf
                         
-                        <div class="space-y-6 w-full max-w-full">
+                        <div class="flex flex-col gap-6 w-full max-w-full">
                             <!-- Ligne 1 : Utilisateur connecté -->
                             <div class="bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 flex items-center justify-between">
                                 <div>
@@ -70,27 +70,25 @@
                             </div>
 
                             <!-- Ligne 2 : Insta -->
-                            <div class="grid grid-cols-1 gap-6">
-                                <div class="relative group">
-                                    <input type="text" name="instagram_handle" id="instagram_handle" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent">
-                                    <label for="instagram_handle" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Instagram (optionnel)</label>
-                                </div>
+                            <div class="relative group">
+                                <input type="text" name="instagram_handle" id="instagram_handle" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent appearance-none">
+                                <label for="instagram_handle" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Instagram (optionnel)</label>
                             </div>
                             
                             <!-- Ligne 3 -->
                             <div class="relative group">
-                                <input type="date" name="booking_date" id="booking_date" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark]">
+                                <input type="date" name="booking_date" id="booking_date" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark] appearance-none">
                                 <label for="booking_date" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Date de session</label>
                             </div>
 
                             <!-- Ligne 3 -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="relative group">
-                                    <input type="time" name="start_time" id="start_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark]">
+                                    <input type="time" name="start_time" id="start_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark] appearance-none">
                                     <label for="start_time" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Heure de début</label>
                                 </div>
                                 <div class="relative group">
-                                    <input type="time" name="end_time" id="end_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark]">
+                                    <input type="time" name="end_time" id="end_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark] appearance-none">
                                     <label for="end_time" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Heure de fin</label>
                                 </div>
                             </div>
