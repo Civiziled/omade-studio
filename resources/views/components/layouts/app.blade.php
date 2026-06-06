@@ -21,11 +21,24 @@
     <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="{{ route('home') }}" class="text-2xl font-display font-bold tracking-tight">O'Made<span class="text-studio-accent">.</span></a>
-            <ul class="flex gap-8 text-sm font-medium">
+            <ul class="flex gap-8 text-sm font-medium items-center">
                 <li><a href="{{ route('gallery') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('gallery') ? 'text-studio-accent' : '' }}">Galerie</a></li>
                 <li><a href="{{ route('tarifs') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('tarifs') ? 'text-studio-accent' : '' }}">Tarifs</a></li>
                 <li><a href="{{ route('booking') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('booking') ? 'text-studio-accent' : '' }}">Réserver</a></li>
                 <li><a href="{{ route('contact') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('contact') ? 'text-studio-accent' : '' }}">Contact</a></li>
+                <li class="h-6 w-px bg-white/20 mx-2"></li>
+                @auth
+                    <li><a href="{{ route('dashboard') }}" class="text-studio-accent hover:text-white transition-colors">Mon Compte</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="text-gray-400 hover:text-white transition-colors">Déconnexion</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}" class="text-gray-300 hover:text-white transition-colors">Connexion</a></li>
+                    <li><a href="{{ route('register') }}" class="bg-studio-accent text-white px-4 py-2 rounded-full hover:bg-white hover:text-studio-dark transition-colors font-semibold">S'inscrire</a></li>
+                @endauth
             </ul>
         </nav>
     </header>

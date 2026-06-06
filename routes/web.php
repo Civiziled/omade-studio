@@ -22,14 +22,15 @@ Route::get('/tarifs', function () {
 
 Route::get('/booking', function () {
     return view('booking');
-})->name('booking');
+})->name('booking')->middleware('auth');
 
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store')->middleware('throttle:3,10');
 
-Route::get('/bookings/{booking}/success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('bookings.success');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store')->middleware(['auth', 'throttle:3,10']);
+Route::get('/bookings/{booking}/success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('bookings.success')->middleware('auth');
+
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Pages Légales
@@ -56,3 +57,17 @@ Route::get('/setup-database', function () {
         return 'Erreur : ' . $e->getMessage();
     }
 });
+
+Route::get('/dashboard', function () {
+    // A simple dashboard showing user's bookings
+    $bookings = \App\Models\Booking::where('user_id', auth()->id())->latest()->get();
+    return view('dashboard', compact('bookings'));
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

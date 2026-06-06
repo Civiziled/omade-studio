@@ -58,15 +58,14 @@
                         @csrf
                         
                         <div class="space-y-6">
-                            <!-- Ligne 1 -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="relative group">
-                                    <input type="text" name="client_name" id="client_name" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent">
-                                    <label for="client_name" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Nom complet</label>
+                            <!-- Ligne 1 : Utilisateur connecté -->
+                            <div class="bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-400">Réservation au nom de :</p>
+                                    <p class="text-white font-semibold">{{ auth()->user()->name }} ({{ auth()->user()->email }})</p>
                                 </div>
-                                <div class="relative group">
-                                    <input type="email" name="client_email" id="client_email" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent">
-                                    <label for="client_email" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Email</label>
+                                <div class="text-studio-accent">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 </div>
                             </div>
 

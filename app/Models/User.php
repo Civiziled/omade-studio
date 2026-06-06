@@ -21,9 +21,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // En production, Filament bloque l'accès par défaut. 
-        // On retourne 'true' pour autoriser l'accès à tes utilisateurs admin.
-        return true; 
+        return $this->is_admin; 
     }
 
     /**

@@ -10,8 +10,6 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'client_name' => 'required|string|max:255',
-            'client_email' => 'required|email|max:255',
             'instagram_handle' => 'nullable|string|max:255',
             'booking_date' => 'required|date|after_or_equal:today',
             'start_time' => 'required|date_format:H:i',
@@ -46,9 +44,12 @@ class BookingController extends Controller
         }
         $validated['notes'] = $notes;
 
+        $user = auth()->user();
+
         $booking = Booking::create([
-            'client_name' => $validated['client_name'],
-            'client_email' => $validated['client_email'],
+            'user_id' => $user->id,
+            'client_name' => $user->name,
+            'client_email' => $user->email,
             'instagram_handle' => $validated['instagram_handle'],
             'booking_date' => $validated['booking_date'],
             'start_time' => $validated['start_time'],
