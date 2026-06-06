@@ -57,9 +57,9 @@
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-studio-accent to-purple-600"></div>
                         @csrf
                         
-                        <div class="flex flex-col gap-6 w-full max-w-full">
+                        <div class="w-full max-w-full">
                             <!-- Ligne 1 : Utilisateur connecté -->
-                            <div class="bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 flex items-center justify-between">
+                            <div class="bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 flex items-center justify-between mb-6">
                                 <div>
                                     <p class="text-sm text-gray-400">Réservation au nom de :</p>
                                     <p class="text-white font-semibold">{{ auth()->user()->name }} ({{ auth()->user()->email }})</p>
@@ -70,19 +70,19 @@
                             </div>
 
                             <!-- Ligne 2 : Insta -->
-                            <div class="relative group">
+                            <div class="relative group mb-6">
                                 <input type="text" name="instagram_handle" id="instagram_handle" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent appearance-none">
                                 <label for="instagram_handle" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Instagram (optionnel)</label>
                             </div>
                             
-                            <!-- Ligne 3 -->
-                            <div class="relative group">
+                            <!-- Ligne 3 : Date -->
+                            <div class="relative group mb-6">
                                 <input type="date" name="booking_date" id="booking_date" required placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark] appearance-none">
                                 <label for="booking_date" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Date de session</label>
                             </div>
 
-                            <!-- Ligne 3 -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Ligne 3 bis : Heures -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                                 <div class="relative group">
                                     <input type="time" name="start_time" id="start_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark] appearance-none">
                                     <label for="start_time" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Heure de début</label>
@@ -94,7 +94,7 @@
                             </div>
 
                             <!-- Ligne 4 : Upload Fichiers -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div class="relative group">
                                     <label class="block text-gray-400 text-sm mb-2">Maquette / Instrumentale</label>
                                     <div class="relative">
@@ -142,7 +142,7 @@
                             </script>
 
                             <!-- Ligne 4 : Service -->
-                            <div class="relative group w-full max-w-full">
+                            <div class="relative group w-full max-w-full mb-6">
                                 <select name="service" id="service" required class="peer w-full max-w-full overflow-hidden text-ellipsis bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all appearance-none cursor-pointer">
                                     <option value="" disabled {{ !request('service') ? 'selected' : '' }} hidden>Sélectionnez un service...</option>
                                     <option value="Enregistrement (35€/h)" class="bg-studio-dark text-white" {{ request('service') == 'Enregistrement (35€/h)' ? 'selected' : '' }}>Enregistrement - 35€/heure</option>
@@ -159,13 +159,13 @@
                             </div>
 
                             <!-- Ligne 5 -->
-                            <div class="relative group">
-                                <textarea name="notes" id="notes" rows="3" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent resize-none"></textarea>
+                            <div class="relative group mb-6">
+                                <textarea name="notes" id="notes" rows="3" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent resize-none appearance-none"></textarea>
                                 <label for="notes" class="absolute left-5 top-4 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-studio-accent peer-focus:bg-studio-dark peer-focus:px-2 peer-valid:-top-2 peer-valid:text-xs peer-valid:bg-studio-dark peer-valid:px-2 rounded">Besoins spécifiques (matériel, ingé son...)</label>
                             </div>
 
                             <!-- Ligne 6 : Méthode de paiement -->
-                            <div class="relative group">
+                            <div class="relative group mb-2">
                                 <label class="block text-gray-400 text-sm mb-3">Méthode de paiement</label>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <label class="cursor-pointer">
