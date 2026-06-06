@@ -59,21 +59,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 services-grid">
                 <!-- Service 1 -->
-                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
+                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">🎙️</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Enregistrement</h4>
                     <p class="text-gray-400 font-light leading-relaxed">Cabines insonorisées à l'acoustique modulable. Une collection de micros premium pour capter chaque nuance de votre voix et de vos instruments.</p>
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
+                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">🎛️</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Mixage</h4>
                     <p class="text-gray-400 font-light leading-relaxed">L'équilibre parfait entre chaleur analogique et flexibilité numérique. Nous donnons profondeur, largeur et impact à vos pistes.</p>
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="service-card mb-8 md:mb-0 bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
+                <div class="service-card bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-zinc-800/50 transition-colors group">
                     <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 text-2xl group-hover:scale-110 transition-transform group-hover:bg-studio-accent group-hover:text-white">💽</div>
                     <h4 class="text-2xl font-display font-semibold mb-4 text-white">Mastering</h4>
                     <p class="text-gray-400 font-light leading-relaxed">L'étape finale cruciale. Un polissage sur-mesure pour garantir que votre morceau sonne massivement sur toutes les plateformes.</p>

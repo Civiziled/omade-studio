@@ -84,7 +84,7 @@
                             </div>
 
                             <!-- Ligne 3 -->
-                            <div class="grid grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div class="relative group">
                                     <input type="time" name="start_time" id="start_time" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all [color-scheme:dark]">
                                     <label for="start_time" class="absolute left-5 -top-2 text-xs text-studio-accent bg-studio-dark px-2 rounded">Heure de début</label>
@@ -96,11 +96,11 @@
                             </div>
 
                             <!-- Ligne 4 : Upload Fichiers -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="relative group">
-                                    <label class="block text-gray-400 text-sm mb-2">Maquette / Instrumentale (Optionnel)</label>
+                                    <label class="block text-gray-400 text-sm mb-2">Maquette / Instrumentale</label>
                                     <div class="relative">
-                                        <input type="file" name="music_file" id="music_file" accept=".mp3,.wav,.m4a,.ogg" class="peer hidden">
+                                        <input type="file" name="music_file" id="music_file" accept=".mp3,.wav,.m4a,.ogg" required class="peer hidden">
                                         <label for="music_file" class="flex flex-col items-center justify-center w-full min-h-[80px] bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white cursor-pointer hover:bg-zinc-800/50 hover:border-studio-accent transition-all group-focus-within:border-studio-accent group-focus-within:ring-1 group-focus-within:ring-studio-accent text-center">
                                             <svg class="w-6 h-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
                                             <span class="text-sm font-medium" id="music_file_name">1 fichier audio (max 20MB)</span>
@@ -110,9 +110,9 @@
                                 </div>
                                 
                                 <div class="relative group">
-                                    <label class="block text-gray-400 text-sm mb-2">Pistes séparées / Stems (Optionnel)</label>
+                                    <label class="block text-gray-400 text-sm mb-2">Pistes séparées / Stems</label>
                                     <div class="relative">
-                                        <input type="file" name="stems_files[]" id="stems_files" accept=".mp3,.wav,.m4a,.ogg,.zip" multiple class="peer hidden">
+                                        <input type="file" name="stems_files[]" id="stems_files" accept=".mp3,.wav,.m4a,.ogg,.zip" multiple required class="peer hidden">
                                         <label for="stems_files" class="flex flex-col items-center justify-center w-full min-h-[80px] bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white cursor-pointer hover:bg-zinc-800/50 hover:border-studio-accent transition-all group-focus-within:border-studio-accent group-focus-within:ring-1 group-focus-within:ring-studio-accent text-center">
                                             <svg class="w-6 h-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                                             <span class="text-sm font-medium" id="stems_files_name">Sélectionner les pistes (.zip autorisé)</span>
@@ -160,13 +160,6 @@
                                 </div>
                             </div>
 
-                            <!-- Ligne 5 : Fichier Musique -->
-                            <div class="relative group">
-                                <!-- On enlève "peer" etc pour le type="file" car le style est géré différemment -->
-                                <input type="file" name="music_file" id="music_file" accept="audio/*" class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-studio-accent file:text-white hover:file:bg-white hover:file:text-studio-dark">
-                                <p class="text-gray-500 text-xs mt-2 ml-2">Uploadez votre maquette / instru (WAV, MP3, M4A) - Max 20Mo</p>
-                            </div>
-
                             <!-- Ligne 5 -->
                             <div class="relative group">
                                 <textarea name="notes" id="notes" rows="3" placeholder=" " class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all placeholder-transparent resize-none"></textarea>
@@ -176,7 +169,7 @@
                             <!-- Ligne 6 : Méthode de paiement -->
                             <div class="relative group">
                                 <label class="block text-gray-400 text-sm mb-3">Méthode de paiement</label>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <label class="cursor-pointer">
                                         <input type="radio" name="payment_method" value="card" checked class="peer sr-only">
                                         <div class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white peer-checked:border-studio-accent peer-checked:ring-1 peer-checked:ring-studio-accent hover:bg-zinc-800/50 transition-all flex flex-col gap-2">

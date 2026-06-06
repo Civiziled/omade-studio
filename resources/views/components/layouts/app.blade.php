@@ -18,10 +18,12 @@
     <canvas id="webgl-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
 
     <!-- Header / Navbar (Simplified) -->
-    <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
+    <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference" x-data="{ mobileMenuOpen: false }">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="{{ route('home') }}" class="text-2xl font-display font-bold tracking-tight">O'Made<span class="text-studio-accent">.</span></a>
-            <ul class="flex gap-8 text-sm font-medium items-center">
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex gap-8 text-sm font-medium items-center">
                 <li><a href="{{ route('gallery') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('gallery') ? 'text-studio-accent' : '' }}">Galerie</a></li>
                 <li><a href="{{ route('tarifs') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('tarifs') ? 'text-studio-accent' : '' }}">Tarifs</a></li>
                 <li><a href="{{ route('booking') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('booking') ? 'text-studio-accent' : '' }}">Réserver</a></li>
@@ -40,7 +42,32 @@
                     <li><a href="{{ route('register') }}" class="bg-studio-accent text-white px-4 py-2 rounded-full hover:bg-white hover:text-studio-dark transition-colors font-semibold">S'inscrire</a></li>
                 @endauth
             </ul>
+
+            <!-- Mobile Hamburger Button -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white focus:outline-none p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-show="!mobileMenuOpen"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-show="mobileMenuOpen" x-cloak><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
         </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenuOpen" x-transition x-cloak class="md:hidden absolute top-full left-0 w-full bg-studio-dark/95 backdrop-blur-xl border-b border-white/10 flex flex-col items-center py-8 gap-6 shadow-2xl">
+            <a href="{{ route('gallery') }}" class="text-lg font-medium hover:text-studio-accent transition-colors">Galerie</a>
+            <a href="{{ route('tarifs') }}" class="text-lg font-medium hover:text-studio-accent transition-colors">Tarifs</a>
+            <a href="{{ route('booking') }}" class="text-lg font-medium hover:text-studio-accent transition-colors">Réserver</a>
+            <a href="{{ route('contact') }}" class="text-lg font-medium hover:text-studio-accent transition-colors">Contact</a>
+            <div class="h-px w-1/2 bg-white/20 my-2"></div>
+            @auth
+                <a href="{{ route('dashboard') }}" class="text-lg text-studio-accent font-medium">Mon Compte</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-lg text-gray-400 hover:text-white transition-colors">Déconnexion</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="text-lg text-gray-300 hover:text-white transition-colors">Connexion</a>
+                <a href="{{ route('register') }}" class="bg-studio-accent text-white px-8 py-3 rounded-full hover:bg-white hover:text-studio-dark transition-colors font-semibold text-lg mt-2">S'inscrire</a>
+            @endauth
+        </div>
     </header>
 
     <!-- Main Content -->
