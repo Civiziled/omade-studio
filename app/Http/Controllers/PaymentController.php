@@ -29,6 +29,7 @@ class PaymentController extends Controller
 
             if ($session->payment_status === 'paid') {
                 $booking->update([
+                    'status' => 'confirmed',
                     'payment_status' => 'paid',
                     'stripe_payment_intent' => $session->payment_intent,
                 ]);
