@@ -72,7 +72,28 @@ class BookingsTable
                         TextInput::make('price')
                             ->label('Prix final (€)')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->default(function (Booking $record) {
+                                if (preg_match('/Service sélectionné : (.*?)(?:\n|$)/', $record->notes, $matches)) {
+                                    $service = trim($matches[1]);
+                                    
+                                    if (str_contains($service, '35€/h')) {
+                                        $start = \Carbon\Carbon::parse($record->start_time);
+                                        $end = \Carbon\Carbon::parse($record->end_time);
+                                        $hours = $start->diffInMinutes($end) / 60;
+                                        return 35 * $hours;
+                                    } elseif (str_contains($service, '50€')) {
+                                        return 50;
+                                    } elseif (str_contains($service, '100€')) {
+                                        return 100;
+                                    } elseif (str_contains($service, '190€')) {
+                                        return 190;
+                                    } elseif (str_contains($service, '300€')) {
+                                        return 300;
+                                    }
+                                }
+                                return null;
+                            }),
                     ])
                     ->action(function (Booking $record, array $data) {
                         $record->update([
