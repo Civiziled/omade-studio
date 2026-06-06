@@ -16,6 +16,8 @@ class BookingController extends Controller
             'end_time' => 'required|date_format:H:i|after:start_time',
             'service' => 'required|string',
             'music_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg|max:20480', // 20MB max
+            'stems_files' => 'nullable|array',
+            'stems_files.*' => 'file|mimes:mp3,wav,m4a,ogg,zip|max:51200', // 50MB max per file for stems
             'notes' => 'nullable|string',
             'payment_method' => 'required|in:card,cash',
         ]);
@@ -31,10 +33,18 @@ class BookingController extends Controller
             return response()->json(['errors' => ['start_time' => ['Désolé, ce créneau horaire est déjà réservé. Veuillez choisir une autre date ou heure.']]], 422);
         }
 
-        // Gérer l'upload du fichier audio
+        // Gérer l'upload du fichier audio principal
         $musicFilePath = null;
         if ($request->hasFile('music_file')) {
             $musicFilePath = $request->file('music_file')->store('bookings/music', 'public');
+        }
+
+        // Gérer l'upload des pistes séparées (stems)
+        $stemsFilePaths = [];
+        if ($request->hasFile('stems_files')) {
+            foreach ($request->file('stems_files') as $file) {
+                $stemsFilePaths[] = $file->store('bookings/stems', 'public');
+            }
         }
 
         // Formater les notes pour inclure le service choisi
@@ -59,6 +69,7 @@ class BookingController extends Controller
             'payment_method' => $validated['payment_method'],
             'notes' => $validated['notes'],
             'music_file_path' => $musicFilePath,
+            'stems_file_paths' => !empty($stemsFilePaths) ? $stemsFilePaths : null,
         ]);
 
         try {

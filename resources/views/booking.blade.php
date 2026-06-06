@@ -95,6 +95,54 @@
                                 </div>
                             </div>
 
+                            <!-- Ligne 4 : Upload Fichiers -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="relative group">
+                                    <label class="block text-gray-400 text-sm mb-2">Maquette / Instrumentale (Optionnel)</label>
+                                    <div class="relative">
+                                        <input type="file" name="music_file" id="music_file" accept=".mp3,.wav,.m4a,.ogg" class="peer hidden">
+                                        <label for="music_file" class="flex flex-col items-center justify-center w-full min-h-[80px] bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white cursor-pointer hover:bg-zinc-800/50 hover:border-studio-accent transition-all group-focus-within:border-studio-accent group-focus-within:ring-1 group-focus-within:ring-studio-accent text-center">
+                                            <svg class="w-6 h-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                                            <span class="text-sm font-medium" id="music_file_name">1 fichier audio (max 20MB)</span>
+                                        </label>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">Formats : MP3, WAV, M4A, OGG</p>
+                                </div>
+                                
+                                <div class="relative group">
+                                    <label class="block text-gray-400 text-sm mb-2">Pistes séparées / Stems (Optionnel)</label>
+                                    <div class="relative">
+                                        <input type="file" name="stems_files[]" id="stems_files" accept=".mp3,.wav,.m4a,.ogg,.zip" multiple class="peer hidden">
+                                        <label for="stems_files" class="flex flex-col items-center justify-center w-full min-h-[80px] bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white cursor-pointer hover:bg-zinc-800/50 hover:border-studio-accent transition-all group-focus-within:border-studio-accent group-focus-within:ring-1 group-focus-within:ring-studio-accent text-center">
+                                            <svg class="w-6 h-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                            <span class="text-sm font-medium" id="stems_files_name">Sélectionner les pistes (.zip autorisé)</span>
+                                        </label>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">Sélectionnez plusieurs fichiers à la fois</p>
+                                </div>
+                            </div>
+
+                            <script>
+                                document.getElementById('music_file').addEventListener('change', function(e) {
+                                    const fileName = e.target.files[0]?.name;
+                                    if(fileName) {
+                                        document.getElementById('music_file_name').textContent = fileName;
+                                    } else {
+                                        document.getElementById('music_file_name').textContent = '1 fichier audio (max 20MB)';
+                                    }
+                                });
+                                document.getElementById('stems_files').addEventListener('change', function(e) {
+                                    const filesCount = e.target.files.length;
+                                    if(filesCount === 1) {
+                                        document.getElementById('stems_files_name').textContent = e.target.files[0].name;
+                                    } else if(filesCount > 1) {
+                                        document.getElementById('stems_files_name').textContent = filesCount + ' fichiers sélectionnés';
+                                    } else {
+                                        document.getElementById('stems_files_name').textContent = 'Sélectionner les pistes (.zip autorisé)';
+                                    }
+                                });
+                            </script>
+
                             <!-- Ligne 4 : Service -->
                             <div class="relative group">
                                 <select name="service" id="service" required class="peer w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-4 text-white focus:border-studio-accent focus:ring-1 focus:ring-studio-accent outline-none transition-all appearance-none cursor-pointer">

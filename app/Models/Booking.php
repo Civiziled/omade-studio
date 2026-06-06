@@ -15,6 +15,7 @@ class Booking extends Model
             'booking_date' => 'date',
             'start_time' => 'datetime',
             'end_time' => 'datetime',
+            'stems_file_paths' => 'array',
         ];
     }
 

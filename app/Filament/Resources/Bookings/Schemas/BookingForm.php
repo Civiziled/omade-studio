@@ -42,15 +42,21 @@ class BookingForm
                 Textarea::make('notes')
                     ->columnSpanFull(),
                 \Filament\Forms\Components\FileUpload::make('music_file_path')
-                    ->label('Fichier Audio Client')
+                    ->label('Maquette / Instrumentale (Client)')
                     ->directory('bookings/music')
                     ->acceptedFileTypes(['audio/*'])
                     ->downloadable()
                     ->columnSpanFull(),
                 \Filament\Forms\Components\Placeholder::make('audio_preview')
-                    ->label('Aperçu Audio')
-                    ->content(fn ($record) => $record && $record->music_file_path ? new \Illuminate\Support\HtmlString('<audio controls src="'.\Illuminate\Support\Facades\Storage::url($record->music_file_path).'" class="w-full mt-2"></audio>') : 'Aucun fichier audio fourni.')
+                    ->label('Aperçu de la Maquette')
+                    ->content(fn ($record) => $record && $record->music_file_path ? new \Illuminate\Support\HtmlString('<audio controls src="'.\Illuminate\Support\Facades\Storage::url($record->music_file_path).'" class="w-full mt-2"></audio>') : 'Aucune maquette fournie.')
                     ->visible(fn ($record) => $record !== null)
+                    ->columnSpanFull(),
+                \Filament\Forms\Components\FileUpload::make('stems_file_paths')
+                    ->label('Pistes séparées / Stems')
+                    ->directory('bookings/stems')
+                    ->multiple()
+                    ->downloadable()
                     ->columnSpanFull(),
             ]);
     }
