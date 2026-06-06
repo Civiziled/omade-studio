@@ -28,6 +28,8 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store')->middleware('throttle:3,10');
+
+Route::get('/bookings/{booking}/success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('bookings.success');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Pages Légales

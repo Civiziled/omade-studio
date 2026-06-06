@@ -46,7 +46,7 @@ class BookingController extends Controller
         }
         $validated['notes'] = $notes;
 
-        Booking::create([
+        $booking = Booking::create([
             'client_name' => $validated['client_name'],
             'client_email' => $validated['client_email'],
             'instagram_handle' => $validated['instagram_handle'],
@@ -57,6 +57,19 @@ class BookingController extends Controller
             'notes' => $validated['notes'],
             'music_file_path' => $musicFilePath,
         ]);
+
+        try {
+            // Envoyer l'email au client
+            \Illuminate\Support\Facades\Mail::to($booking->client_email)
+                ->send(new \App\Mail\BookingPendingClientMail($booking));
+
+            // Envoyer l'email au gérant (admin)
+            \Illuminate\Support\Facades\Mail::to('contact@omade-studio.be')
+                ->send(new \App\Mail\BookingPendingManagerMail($booking));
+        } catch (\Exception $e) {
+            // On ignore l'erreur d'envoi d'email pour ne pas bloquer le client si le serveur SMTP a un souci
+            \Illuminate\Support\Facades\Log::error('Erreur d\'envoi d\'email de réservation: ' . $e->getMessage());
+        }
 
         return response()->json(['message' => 'Réservation enregistrée avec succès. Notre équipe vous contactera sous peu.'], 201);
     }

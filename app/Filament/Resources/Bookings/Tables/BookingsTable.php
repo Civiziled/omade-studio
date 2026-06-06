@@ -7,6 +7,9 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\Action;
+use App\Models\Booking;
+use Filament\Forms\Components\TextInput;
 
 class BookingsTable
 {
@@ -30,7 +33,23 @@ class BookingsTable
                     ->time()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'confirmed' => 'success',
+                        'cancelled' => 'danger',
+                        'completed' => 'gray',
+                    }),
+                TextColumn::make('payment_status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'unpaid' => 'warning',
+                        'paid' => 'success',
+                        'refunded' => 'danger',
+                    }),
+                TextColumn::make('price')
+                    ->money('EUR')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -44,6 +63,62 @@ class BookingsTable
                 //
             ])
             ->recordActions([
+                Action::make('approve_payment')
+                    ->label('Accepter & Demander Paiement')
+                    ->icon('heroicon-o-currency-euro')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->form([
+                        TextInput::make('price')
+                            ->label('Prix final (€)')
+                            ->numeric()
+                            ->required(),
+                    ])
+                    ->action(function (Booking $record, array $data) {
+                        $record->update([
+                            'price' => $data['price'],
+                            'status' => 'confirmed',
+                            'payment_status' => 'unpaid',
+                        ]);
+
+                        $stripe = new \Stripe\StripeClient(config('services.stripe.secret'));
+                        $checkout_session = $stripe->checkout->sessions->create([
+                            'line_items' => [[
+                                'price_data' => [
+                                    'currency' => 'eur',
+                                    'product_data' => [
+                                        'name' => 'Session O\'Made Studio - ' . $record->booking_date->format('d/m/Y'),
+                                    ],
+                                    'unit_amount' => $data['price'] * 100,
+                                ],
+                                'quantity' => 1,
+                            ]],
+                            'mode' => 'payment',
+                            'success_url' => route('bookings.success', ['booking' => $record->id]) . '?session_id={CHECKOUT_SESSION_ID}',
+                            'cancel_url' => url('/'),
+                        ]);
+
+                        $record->update(['stripe_session_id' => $checkout_session->id]);
+
+                        \Illuminate\Support\Facades\Mail::to($record->client_email)
+                            ->send(new \App\Mail\BookingApprovedClientMail($record, $checkout_session->url));
+                    })
+                    ->visible(fn (Booking $record) => $record->status === 'pending'),
+
+                Action::make('refund')
+                    ->label('Rembourser')
+                    ->icon('heroicon-o-arrow-uturn-left')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->action(function (Booking $record) {
+                        if ($record->stripe_payment_intent) {
+                            $stripe = new \Stripe\StripeClient(config('services.stripe.secret'));
+                            $stripe->refunds->create(['payment_intent' => $record->stripe_payment_intent]);
+                            $record->update(['payment_status' => 'refunded', 'status' => 'cancelled']);
+                        }
+                    })
+                    ->visible(fn (Booking $record) => $record->payment_status === 'paid'),
+                    
                 EditAction::make(),
             ])
             ->toolbarActions([
