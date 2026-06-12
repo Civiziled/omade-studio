@@ -18,7 +18,11 @@
                     @forelse($medias as $media)
                     <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[40%]">
                         <div class="relative group overflow-hidden rounded-3xl shadow-2xl aspect-[4/5] md:aspect-square">
-                            <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110">
+                            @if($media->type === 'video')
+                                <video src="{{ Storage::url($media->file_path) }}" autoplay loop muted playsinline class="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110"></video>
+                            @else
+                                <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110">
+                            @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                                 <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                     <span class="text-studio-accent text-sm font-bold tracking-[0.2em] uppercase block mb-1">O'Made</span>

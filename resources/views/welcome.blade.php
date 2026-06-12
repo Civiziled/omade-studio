@@ -37,7 +37,11 @@
                         @forelse($mediasGenese as $media)
                         <div class="swiper-slide">
                             <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
-                            <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                            @if($media->type === 'video')
+                                <video src="{{ Storage::url($media->file_path) }}" autoplay loop muted playsinline class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"></video>
+                            @else
+                                <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                            @endif
                         </div>
                         @empty
                         <!-- Default Slide -->

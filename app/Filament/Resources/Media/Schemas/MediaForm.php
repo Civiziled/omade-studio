@@ -24,7 +24,8 @@ class MediaForm
                     ->required(),
                 \Filament\Forms\Components\FileUpload::make('file_path')
                     ->directory('gallery')
-                    ->image()
+                    ->acceptedFileTypes(['image/*', 'video/mp4', 'video/quicktime', 'application/json'])
+                    ->maxSize(51200) // 50MB max
                     ->required(),
                 \Filament\Forms\Components\FileUpload::make('thumbnail_path')
                     ->directory('thumbnails')
