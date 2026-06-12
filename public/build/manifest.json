@@ -1,6 +1,10 @@
 {
+  "_chunk-BCz-6Eeh.js": {
+    "file": "assets/chunk-BCz-6Eeh.js",
+    "name": "chunk"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-3DHqONWX.css",
+    "file": "assets/app-BtMUvNM7.css",
     "name": "app",
     "names": [
       "app.css"
@@ -9,9 +13,21 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BRa9D2y9.js",
+    "file": "assets/app-C9DF4ucW.js",
     "name": "app",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_chunk-BCz-6Eeh.js"
+    ]
+  },
+  "resources/js/react-gallery.tsx": {
+    "file": "assets/react-gallery-CHCO1IaP.js",
+    "name": "react-gallery",
+    "src": "resources/js/react-gallery.tsx",
+    "isEntry": true,
+    "imports": [
+      "_chunk-BCz-6Eeh.js"
+    ]
   }
 }
