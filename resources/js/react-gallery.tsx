@@ -35,16 +35,21 @@ function initGallery() {
             };
         });
 
-        const root = createRoot(rootElement);
-        root.render(
-            <React.StrictMode>
-                <InteractiveBentoGallery 
-                    mediaItems={mediaItems} 
-                    title="Notre Espace" 
-                    description="Découvrez l'environnement unique où la magie opère. Cliquez ou glissez pour explorer." 
-                />
-            </React.StrictMode>
-        );
+        try {
+            const root = createRoot(rootElement);
+            root.render(
+                <React.StrictMode>
+                    <div className="absolute top-0 left-0 bg-green-500 text-white z-50 p-2 text-xs">React Mounted Successfully! Medias Count: {mediaItems.length}</div>
+                    <InteractiveBentoGallery 
+                        mediaItems={mediaItems} 
+                        title="Notre Espace" 
+                        description="Découvrez l'environnement unique où la magie opère. Cliquez ou glissez pour explorer." 
+                    />
+                </React.StrictMode>
+            );
+        } catch (err: any) {
+            rootElement.innerHTML = `<div class="p-10 text-red-500 font-bold bg-white m-10 rounded z-50 relative">REACT ERROR: ${err.message}</div>`;
+        }
     }
 }
 
