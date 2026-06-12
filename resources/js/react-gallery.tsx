@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import InteractiveBentoGallery, { MediaItemType } from './components/ui/interactive-bento-gallery';
 
-document.addEventListener('DOMContentLoaded', () => {
+function initGallery() {
     const rootElement = document.getElementById('react-gallery-root');
     if (rootElement) {
         // Retrieve medias from data attribute
@@ -46,4 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </React.StrictMode>
         );
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGallery);
+} else {
+    initGallery();
+}
