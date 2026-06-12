@@ -1,36 +1,7 @@
 <x-layouts.app>
     <!-- Hero Section -->
-    <section class="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-        <!-- Hero Background Slider -->
-        <div class="absolute inset-0 z-0">
-            <div class="swiper hero-swiper w-full h-full">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1: Image -->
-                    <div class="swiper-slide relative">
-                        <div class="absolute inset-0 bg-black/60 z-10"></div>
-                        <img src="{{ asset('genese.jpg') }}" alt="Studio" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 2: Placeholder Image -->
-                    <div class="swiper-slide relative">
-                        <div class="absolute inset-0 bg-black/60 z-10"></div>
-                        <div class="w-full h-full bg-zinc-900 flex items-center justify-center">
-                            <span class="text-white/20 text-4xl font-display">Photo/Vidéo 2</span>
-                        </div>
-                    </div>
-                    <!-- Slide 3: Placeholder Image -->
-                    <div class="swiper-slide relative">
-                        <div class="absolute inset-0 bg-black/60 z-10"></div>
-                        <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
-                            <span class="text-white/20 text-4xl font-display">Photo/Vidéo 3</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pagination -->
-                <div class="swiper-pagination hero-pagination"></div>
-            </div>
-        </div>
-
-        <div class="hero-content z-10 mt-16 pointer-events-none">
+    <section class="relative h-screen flex flex-col items-center justify-center text-center px-4">
+        <div class="hero-content z-10 mt-16">
             <h1 class="hero-title text-7xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-6 opacity-0 translate-y-12">
                 <span class="block text-3xl md:text-5xl font-light tracking-widest text-gray-400 mb-4 lowercase">Bienvenue chez</span>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">O'Made Studio.</span>
@@ -38,7 +9,7 @@
             <p class="hero-subtitle text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto mb-10 opacity-0 translate-y-8">
                 Créer, c’est se confier. O’Made Studio est un espace pensé pour les artistes qui cherchent un son soigné, une écoute attentive, et un résultat qui leur ressemble vraiment.
             </p>
-            <div class="hero-cta opacity-0 flex gap-6 justify-center pointer-events-auto">
+            <div class="hero-cta opacity-0 flex gap-6 justify-center">
                 <a href="#histoire" class="inline-block bg-white text-studio-dark font-semibold px-8 py-4 rounded-full hover:bg-gray-200 transition-all duration-300">
                     Notre Histoire
                 </a>
@@ -49,39 +20,41 @@
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-50 animate-bounce z-10">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-50 animate-bounce">
             <div class="w-[30px] h-[50px] border-2 border-white rounded-full flex justify-center p-2">
                 <div class="w-1 h-3 bg-white rounded-full"></div>
             </div>
         </div>
     </section>
 
-    <!-- Swiper Init Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof Swiper !== 'undefined') {
-                new Swiper('.hero-swiper', {
-                    loop: true,
-                    effect: 'fade',
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
-                    pagination: {
-                        el: '.hero-pagination',
-                        clickable: true,
-                    },
-                });
-            }
-        });
-    </script>
-
     <!-- Histoire Section -->
     <section id="histoire" class="py-32 bg-studio-dark relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1 relative group rounded-3xl overflow-hidden image-reveal">
-                <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
-                <img src="{{ asset('genese.jpg') }}" alt="Studio O'Made" class="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                <!-- Genèse Slider -->
+                <div class="swiper genese-swiper w-full h-full aspect-[4/5] lg:aspect-auto">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
+                            <img src="{{ asset('genese.jpg') }}" alt="Studio O'Made" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                        </div>
+                        <!-- Slide 2 Placeholder -->
+                        <div class="swiper-slide">
+                            <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
+                                <span class="text-white/20 text-2xl font-display">Photo/Vidéo 2</span>
+                            </div>
+                        </div>
+                        <!-- Slide 3 Placeholder -->
+                        <div class="swiper-slide">
+                            <div class="w-full h-full bg-zinc-900 flex items-center justify-center">
+                                <span class="text-white/20 text-2xl font-display">Photo/Vidéo 3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination genese-pagination"></div>
+                </div>
             </div>
             
             <div class="order-1 lg:order-2 space-y-8">
@@ -97,6 +70,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Swiper Init Script for Genèse -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.genese-swiper', {
+                    loop: true,
+                    effect: 'fade',
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.genese-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        });
+    </script>
 
     <!-- Services Section -->
     <section class="py-32 relative z-10 bg-black">
