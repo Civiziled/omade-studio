@@ -5,7 +5,11 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $mediasGenese = \App\Models\Media::where('category', 'about')
+        ->where('is_active', true)
+        ->orderBy('sort_order', 'asc')
+        ->get();
+    return view('welcome', compact('mediasGenese'));
 })->name('home');
 
 Route::get('/gallery', function () {

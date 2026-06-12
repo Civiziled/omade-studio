@@ -34,23 +34,18 @@
                 <!-- Genèse Slider -->
                 <div class="swiper genese-swiper w-full h-full aspect-[4/5] lg:aspect-auto">
                     <div class="swiper-wrapper">
-                        <!-- Slide 1 -->
+                        @forelse($mediasGenese as $media)
+                        <div class="swiper-slide">
+                            <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
+                            <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                        </div>
+                        @empty
+                        <!-- Default Slide -->
                         <div class="swiper-slide">
                             <div class="absolute inset-0 bg-studio-accent mix-blend-overlay opacity-20 group-hover:opacity-0 transition-opacity duration-700 z-10"></div>
                             <img src="{{ asset('genese.jpg') }}" alt="Studio O'Made" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
                         </div>
-                        <!-- Slide 2 Placeholder -->
-                        <div class="swiper-slide">
-                            <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
-                                <span class="text-white/20 text-2xl font-display">Photo/Vidéo 2</span>
-                            </div>
-                        </div>
-                        <!-- Slide 3 Placeholder -->
-                        <div class="swiper-slide">
-                            <div class="w-full h-full bg-zinc-900 flex items-center justify-center">
-                                <span class="text-white/20 text-2xl font-display">Photo/Vidéo 3</span>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                     <!-- Pagination -->
                     <div class="swiper-pagination genese-pagination"></div>
