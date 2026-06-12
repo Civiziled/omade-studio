@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" defer></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -20,7 +24,9 @@
     <!-- Header / Navbar -->
     <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
-            <a href="{{ route('home') }}" class="text-2xl font-display font-bold tracking-tight">O'Made<span class="text-studio-accent">.</span></a>
+            <a href="{{ route('home') }}" class="flex items-center gap-2">
+                <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+            </a>
             
             <!-- Desktop Menu -->
             <ul class="hidden md:flex gap-8 text-sm font-medium items-center">
@@ -55,8 +61,9 @@
         <button @click="mobileMenuOpen = false" class="absolute top-6 right-6 text-white focus:outline-none p-2">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-        
-        <a href="{{ route('home') }}" class="text-3xl font-display font-bold mb-4">O'Made<span class="text-studio-accent">.</span></a>
+        <a href="{{ route('home') }}" class="mb-4">
+            <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-12 w-auto object-contain">
+        </a>
         
         <a href="{{ route('gallery') }}" class="text-xl font-medium hover:text-studio-accent transition-colors">Galerie</a>
         <a href="{{ route('tarifs') }}" class="text-xl font-medium hover:text-studio-accent transition-colors">Tarifs</a>
@@ -106,7 +113,9 @@
             <div class="flex flex-col md:flex-row justify-between gap-12 mb-16">
                 <!-- GAUCHE : Branding -->
                 <div class="md:w-1/3 space-y-6">
-                    <a href="{{ route('home') }}" class="text-3xl font-display font-bold tracking-tight text-white block">O'Made<span class="text-studio-accent">.</span></a>
+                    <a href="{{ route('home') }}" class="block">
+                        <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-12 w-auto object-contain">
+                    </a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
                         Le studio d'enregistrement de référence à Diegem. Équipement premium, acoustique parfaite et accompagnement sur-mesure.
                     </p>

@@ -10,28 +10,66 @@
         </div>
     </section>
 
-    <!-- Galerie Grid -->
-    <section class="pb-32 bg-studio-dark relative z-10 min-h-screen">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 gallery-grid">
-                @forelse($medias as $media)
-                <div class="gallery-item relative group overflow-hidden rounded-3xl break-inside-avoid shadow-2xl opacity-0">
-                    <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <span class="text-studio-accent text-sm font-bold tracking-[0.2em] uppercase block mb-1">O'Made</span>
-                            <span class="text-white text-2xl font-display font-semibold">{{ $media->title }}</span>
+    <!-- Galerie Interactive -->
+    <section class="pb-32 bg-studio-dark relative z-10 min-h-screen flex items-center">
+        <div class="w-full mx-auto px-0 md:px-6">
+            <div class="swiper gallery-swiper w-full pt-10 pb-20">
+                <div class="swiper-wrapper">
+                    @forelse($medias as $media)
+                    <div class="swiper-slide w-[80%] md:w-[60%] lg:w-[40%]">
+                        <div class="relative group overflow-hidden rounded-3xl shadow-2xl aspect-[4/5] md:aspect-square">
+                            <img src="{{ Storage::url($media->file_path) }}" alt="{{ $media->title }}" class="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                                <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                    <span class="text-studio-accent text-sm font-bold tracking-[0.2em] uppercase block mb-1">O'Made</span>
+                                    <span class="text-white text-2xl md:text-3xl font-display font-semibold">{{ $media->title }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @empty
+                    <div class="w-full text-center py-32 text-gray-500 bg-zinc-900/50 rounded-3xl border border-white/5 backdrop-blur-md">
+                        <div class="text-6xl mb-6">📸</div>
+                        <p class="text-2xl font-display font-light text-white mb-2">La galerie est en préparation.</p>
+                        <p class="text-sm">Connectez-vous à l'administration pour ajouter vos photos !</p>
+                    </div>
+                    @endforelse
                 </div>
-                @empty
-                <div class="col-span-full text-center py-32 text-gray-500 bg-zinc-900/50 rounded-3xl border border-white/5 backdrop-blur-md reveal-up">
-                    <div class="text-6xl mb-6">📸</div>
-                    <p class="text-2xl font-display font-light text-white mb-2">La galerie est en préparation.</p>
-                    <p class="text-sm">Connectez-vous à l'administration pour ajouter vos photos !</p>
-                </div>
-                @endforelse
+                <!-- Pagination & Navigation -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev hidden md:flex text-white !w-14 !h-14 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-studio-accent transition-all after:!text-lg"></div>
+                <div class="swiper-button-next hidden md:flex text-white !w-14 !h-14 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-studio-accent transition-all after:!text-lg"></div>
             </div>
         </div>
     </section>
+
+    <!-- Swiper Init Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.gallery-swiper', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: {
+                        rotate: 20,
+                        stretch: 0,
+                        depth: 200,
+                        modifier: 1,
+                        slideShadows: true,
+                    },
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            }
+        });
+    </script>
 </x-layouts.app>

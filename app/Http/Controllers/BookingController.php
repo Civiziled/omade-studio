@@ -9,6 +9,8 @@ class BookingController extends Controller
 {
     public function store(Request $request)
     {
+        $hasPastBooking = auth()->check() && Booking::where('user_id', auth()->id())->exists();
+
         $validated = $request->validate([
             'instagram_handle' => 'nullable|string|max:255',
             'booking_date' => 'required|date|after_or_equal:today',
@@ -16,7 +18,7 @@ class BookingController extends Controller
             'end_time' => 'required|date_format:H:i|after:start_time',
             'service' => 'required|string',
             'music_file' => 'required|file|mimes:mp3,wav,m4a,ogg|max:20480', // 20MB max
-            'stems_files' => 'required|array',
+            'stems_files' => $hasPastBooking ? 'nullable|array' : 'required|array',
             'stems_files.*' => 'file|mimes:mp3,wav,m4a,ogg,zip|max:51200', // 50MB max per file for stems
             'notes' => 'nullable|string',
             'payment_method' => 'required|in:card,cash',

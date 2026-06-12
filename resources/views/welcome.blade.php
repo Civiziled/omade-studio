@@ -1,31 +1,80 @@
 <x-layouts.app>
     <!-- Hero Section -->
-    <section class="relative h-screen flex flex-col items-center justify-center text-center px-4">
-        <div class="hero-content z-10 mt-16">
+    <section class="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        <!-- Hero Background Slider -->
+        <div class="absolute inset-0 z-0">
+            <div class="swiper hero-swiper w-full h-full">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1: Image -->
+                    <div class="swiper-slide relative">
+                        <div class="absolute inset-0 bg-black/60 z-10"></div>
+                        <img src="{{ asset('genese.jpg') }}" alt="Studio" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Slide 2: Placeholder Image -->
+                    <div class="swiper-slide relative">
+                        <div class="absolute inset-0 bg-black/60 z-10"></div>
+                        <div class="w-full h-full bg-zinc-900 flex items-center justify-center">
+                            <span class="text-white/20 text-4xl font-display">Photo/Vidéo 2</span>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Placeholder Image -->
+                    <div class="swiper-slide relative">
+                        <div class="absolute inset-0 bg-black/60 z-10"></div>
+                        <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
+                            <span class="text-white/20 text-4xl font-display">Photo/Vidéo 3</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination hero-pagination"></div>
+            </div>
+        </div>
+
+        <div class="hero-content z-10 mt-16 pointer-events-none">
             <h1 class="hero-title text-7xl md:text-9xl font-display font-bold uppercase tracking-tighter mb-6 opacity-0 translate-y-12">
                 <span class="block text-3xl md:text-5xl font-light tracking-widest text-gray-400 mb-4 lowercase">Bienvenue chez</span>
-                O'Made <span class="text-transparent bg-clip-text bg-gradient-to-r from-studio-accent to-purple-500">Studio.</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">O'Made Studio.</span>
             </h1>
             <p class="hero-subtitle text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto mb-10 opacity-0 translate-y-8">
                 Créer, c’est se confier. O’Made Studio est un espace pensé pour les artistes qui cherchent un son soigné, une écoute attentive, et un résultat qui leur ressemble vraiment.
             </p>
-            <div class="hero-cta opacity-0 flex gap-6 justify-center">
+            <div class="hero-cta opacity-0 flex gap-6 justify-center pointer-events-auto">
                 <a href="#histoire" class="inline-block bg-white text-studio-dark font-semibold px-8 py-4 rounded-full hover:bg-gray-200 transition-all duration-300">
                     Notre Histoire
                 </a>
-                <a href="{{ route('booking') }}" class="inline-block border border-studio-accent text-studio-accent font-semibold px-8 py-4 rounded-full hover:bg-studio-accent hover:text-white transition-all duration-300">
+                <a href="{{ route('booking') }}" class="inline-block bg-studio-accent text-white font-semibold px-8 py-4 rounded-full hover:bg-white hover:text-studio-dark transition-all duration-300">
                     Réserver
                 </a>
             </div>
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-50 animate-bounce">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-50 animate-bounce z-10">
             <div class="w-[30px] h-[50px] border-2 border-white rounded-full flex justify-center p-2">
                 <div class="w-1 h-3 bg-white rounded-full"></div>
             </div>
         </div>
     </section>
+
+    <!-- Swiper Init Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.hero-swiper', {
+                    loop: true,
+                    effect: 'fade',
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.hero-pagination',
+                        clickable: true,
+                    },
+                });
+            }
+        });
+    </script>
 
     <!-- Histoire Section -->
     <section id="histoire" class="py-32 bg-studio-dark relative z-10 border-t border-white/5">

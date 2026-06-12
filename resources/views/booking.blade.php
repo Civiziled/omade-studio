@@ -110,13 +110,17 @@
                                 <div class="relative group">
                                     <label class="block text-gray-400 text-sm mb-2">Pistes séparées / Stems</label>
                                     <div class="relative">
-                                        <input type="file" name="stems_files[]" id="stems_files" accept=".mp3,.wav,.m4a,.ogg,.zip" multiple required class="peer hidden">
+                                        <input type="file" name="stems_files[]" id="stems_files" accept=".mp3,.wav,.m4a,.ogg,.zip" multiple {{ isset($hasPastBooking) && $hasPastBooking ? '' : 'required' }} class="peer hidden">
                                         <label for="stems_files" class="flex flex-col items-center justify-center w-full min-h-[80px] bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white cursor-pointer hover:bg-zinc-800/50 hover:border-studio-accent transition-all group-focus-within:border-studio-accent group-focus-within:ring-1 group-focus-within:ring-studio-accent text-center">
                                             <svg class="w-6 h-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                                             <span class="text-sm font-medium" id="stems_files_name">Sélectionner les pistes (.zip autorisé)</span>
                                         </label>
                                     </div>
-                                    <p class="text-xs text-gray-500 mt-1">Sélectionnez plusieurs fichiers à la fois</p>
+                                    @if(isset($hasPastBooking) && $hasPastBooking)
+                                        <p class="text-xs text-studio-accent font-medium mt-1">Client reconnu : Pistes séparées facultatives</p>
+                                    @else
+                                        <p class="text-xs text-gray-500 mt-1">Sélectionnez plusieurs fichiers à la fois</p>
+                                    @endif
                                 </div>
                             </div>
 

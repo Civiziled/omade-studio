@@ -21,7 +21,8 @@ Route::get('/tarifs', function () {
 })->name('tarifs');
 
 Route::get('/booking', function () {
-    return view('booking');
+    $hasPastBooking = auth()->check() && \App\Models\Booking::where('user_id', auth()->id())->exists();
+    return view('booking', compact('hasPastBooking'));
 })->name('booking')->middleware('auth');
 
 Route::get('/contact', function () {
