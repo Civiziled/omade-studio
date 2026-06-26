@@ -57,7 +57,7 @@
             </div>
             
             <div class="order-1 lg:order-2 space-y-8">
-                <h2 class="text-sm font-bold tracking-[0.3em] text-studio-accent uppercase reveal-up">La Genèse</h2>
+                <h2 class="text-sm font-bold tracking-[0.3em] text-studio-accent text-glow-accent uppercase reveal-up">La Genèse</h2>
                 <h3 class="text-4xl md:text-5xl font-display font-semibold leading-tight reveal-up">Né d'une passion obsessionnelle pour la perfection sonore.</h3>
                 <div class="text-gray-400 space-y-6 text-lg font-light reveal-up">
                     <p>Tout a commencé quand j’avais 15 ans. Pas avec un projet, pas avec un business plan, juste de la curiosité. Un son qui m’intrigue, une envie de comprendre comment il est construit, et puis cette flamme qui ne s’est plus jamais éteinte.</p>
@@ -94,7 +94,7 @@
     <section class="py-32 relative z-10 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-sm font-bold tracking-[0.3em] text-studio-accent uppercase mb-4 reveal-up">Notre Expertise</h2>
+                <h2 class="text-sm font-bold tracking-[0.3em] text-studio-accent text-glow-accent uppercase mb-4 reveal-up">Notre Expertise</h2>
                 <h3 class="text-4xl md:text-6xl font-display font-bold reveal-up">Forger votre signature.</h3>
             </div>
 

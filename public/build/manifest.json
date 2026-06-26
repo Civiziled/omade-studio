@@ -4,7 +4,7 @@
     "name": "chunk"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DtEEgEo5.css",
+    "file": "assets/app-CnACW7gn.css",
     "name": "app",
     "names": [
       "app.css"
@@ -22,7 +22,7 @@
     ]
   },
   "resources/js/react-gallery.tsx": {
-    "file": "assets/react-gallery-C3GorrjG.js",
+    "file": "assets/react-gallery-De4MCkIL.js",
     "name": "react-gallery",
     "src": "resources/js/react-gallery.tsx",
     "isEntry": true,

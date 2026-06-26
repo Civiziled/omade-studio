@@ -16,6 +16,19 @@
     --color-studio-accent: #b8a892;
 }
 
+/* Fallback for Mistress Italic if not uploaded yet. Use Great Vibes from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+@layer utilities {
+    .font-mistress {
+        font-family: 'Mistress Italic', '1845 Mistress Italic', 'Great Vibes', cursive;
+    }
+    
+    .text-glow-accent {
+        text-shadow: 0 0 10px rgba(184,168,146, 0.7), 0 0 20px rgba(184,168,146, 0.4), 0 0 30px rgba(184,168,146, 0.2);
+    }
+}
+
 /* Lenis Smooth Scroll Fixes */
 html.lenis, html.lenis body {
   height: auto;

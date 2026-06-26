@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
 // MediaItemType defines the structure of a media item
@@ -122,10 +122,11 @@ const MediaItem = ({ item, className, onClick }: { item: MediaItemType, classNam
         <img
             src={item.url} // Image source URL
             alt={item.title} // Alt text for the image
-            className={`${className} object-cover cursor-pointer`} // Style the image
+            className={`${className} object-cover cursor-pointer select-none`} // Style the image
             onClick={onClick} // Trigger onClick when the image is clicked
             loading="lazy" // Lazy load the image for performance
             decoding="async" // Decode the image asynchronously
+            draggable={false}
         />
     );
 };
@@ -145,75 +146,105 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
 
     if (!isOpen) return null; // Return null if the modal is not open
 
+    const currentIndex = mediaItems.findIndex(item => item.id === selectedItem.id);
+
+    const handlePrev = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        if (currentIndex > 0) {
+            setSelectedItem(mediaItems[currentIndex - 1]);
+        } else {
+            setSelectedItem(mediaItems[mediaItems.length - 1]);
+        }
+    };
+
+    const handleNext = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        if (currentIndex < mediaItems.length - 1) {
+            setSelectedItem(mediaItems[currentIndex + 1]);
+        } else {
+            setSelectedItem(mediaItems[0]);
+        }
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') handlePrev();
+            if (e.key === 'ArrowRight') handleNext();
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [currentIndex]);
+
     return (
         <>
             {/* Main Modal */}
             <motion.div
-                initial={{ scale: 0.98 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.98 }}
-                transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 30
-                }}
-                className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg 
-                          rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-[100]"
-
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 w-full min-h-screen sm:h-screen backdrop-blur-xl bg-black/80
+                          rounded-none overflow-hidden z-[100] flex flex-col"
+                onClick={onClose}
             >
                 {/* Main Content */}
-                <div className="h-full flex flex-col">
-                    <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-50/50">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={selectedItem.id}
-                                className="relative w-full aspect-[16/9] max-w-[95%] sm:max-w-[85%] md:max-w-3xl 
-                                         h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md"
-                                initial={{ y: 20, scale: 0.97 }}
-                                animate={{
-                                    y: 0,
-                                    scale: 1,
-                                    transition: {
-                                        type: "spring",
-                                        stiffness: 500,
-                                        damping: 30,
-                                        mass: 0.5
-                                    }
-                                }}
-                                exit={{
-                                    y: 20,
-                                    scale: 0.97,
-                                    transition: { duration: 0.15 }
-                                }}
-                                onClick={onClose}
-                            >
-                                <MediaItem item={selectedItem} className="w-full h-full object-contain bg-gray-900/20" onClick={onClose} />
-                                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 
-                                              bg-gradient-to-t from-black/50 to-transparent">
-                                    <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold">
-                                        {selectedItem.title}
-                                    </h3>
-                                    <p className="text-white/80 text-xs sm:text-sm mt-1">
-                                        {selectedItem.desc}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
+                <div className="flex-1 flex flex-row items-center justify-center p-4 relative" onClick={e => e.stopPropagation()}>
+                    {/* Prev Button */}
+                    <button 
+                        className="absolute left-2 md:left-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all z-50 hidden md:block"
+                        onClick={handlePrev}
+                    >
+                        <ChevronLeft className="w-8 h-8" />
+                    </button>
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={selectedItem.id}
+                            className="relative w-full max-w-5xl h-auto max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-transparent cursor-grab active:cursor-grabbing"
+                            initial={{ x: 50, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -50, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            drag="x"
+                            dragConstraints={{ left: 0, right: 0 }}
+                            dragElastic={0.2}
+                            onDragEnd={(e, { offset }) => {
+                                if (offset.x < -100) handleNext();
+                                else if (offset.x > 100) handlePrev();
+                            }}
+                        >
+                            <MediaItem item={selectedItem} className="max-w-full max-h-[85vh] object-contain rounded-2xl" />
+                            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 
+                                          bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none rounded-b-2xl">
+                                <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-semibold">
+                                    {selectedItem.title}
+                                </h3>
+                                <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">
+                                    {selectedItem.desc}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Next Button */}
+                    <button 
+                        className="absolute right-2 md:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all z-50 hidden md:block"
+                        onClick={handleNext}
+                    >
+                        <ChevronRight className="w-8 h-8" />
+                    </button>
                 </div>
 
                 {/* Close Button */}
                 <motion.button
-                    className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 
-                              p-2 rounded-full bg-gray-200/80 text-gray-700 hover:bg-gray-300/80 
-                              text-xs sm:text-sm backdrop-blur-sm z-[110]"
+                    className="absolute top-4 right-4 md:top-8 md:right-8 p-3 rounded-full bg-white/10 text-white hover:bg-white/30 backdrop-blur-md z-[110]"
                     onClick={onClose}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                 >
-                    <X className='w-5 h-5' />
+                    <X className='w-6 h-6' />
                 </motion.button>
-
             </motion.div>
 
             {/* Draggable Dock */}

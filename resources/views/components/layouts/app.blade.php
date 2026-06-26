@@ -25,18 +25,18 @@
     <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                <span class="font-mistress text-studio-accent text-glow-accent text-3xl md:text-4xl tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">O'Made</span>
             </a>
             
             <!-- Desktop Menu -->
             <ul class="hidden md:flex gap-8 text-sm font-medium items-center">
-                <li><a href="{{ route('gallery') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('gallery') ? 'text-studio-accent' : '' }}">Galerie</a></li>
-                <li><a href="{{ route('tarifs') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('tarifs') ? 'text-studio-accent' : '' }}">Tarifs</a></li>
-                <li><a href="{{ route('booking') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('booking') ? 'text-studio-accent' : '' }}">Réserver</a></li>
-                <li><a href="{{ route('contact') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('contact') ? 'text-studio-accent' : '' }}">Contact</a></li>
+                <li><a href="{{ route('gallery') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('gallery') ? 'text-studio-accent text-glow-accent' : '' }}">Galerie</a></li>
+                <li><a href="{{ route('tarifs') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('tarifs') ? 'text-studio-accent text-glow-accent' : '' }}">Tarifs</a></li>
+                <li><a href="{{ route('booking') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('booking') ? 'text-studio-accent text-glow-accent' : '' }}">Réserver</a></li>
+                <li><a href="{{ route('contact') }}" class="hover:text-studio-accent transition-colors {{ request()->routeIs('contact') ? 'text-studio-accent text-glow-accent' : '' }}">Contact</a></li>
                 <li class="h-6 w-px bg-white/20 mx-2"></li>
                 @auth
-                    <li><a href="{{ route('dashboard') }}" class="text-studio-accent hover:text-white transition-colors">Mon Compte</a></li>
+                    <li><a href="{{ route('dashboard') }}" class="text-studio-accent text-glow-accent hover:text-white transition-colors">Mon Compte</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
@@ -62,7 +62,7 @@
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <a href="{{ route('home') }}" class="mb-4">
-            <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-12 w-auto object-contain">
+            <span class="font-mistress text-studio-accent text-glow-accent text-4xl tracking-widest">O'Made</span>
         </a>
         
         <a href="{{ route('gallery') }}" class="text-xl font-medium hover:text-studio-accent transition-colors">Galerie</a>
@@ -71,7 +71,7 @@
         <a href="{{ route('contact') }}" class="text-xl font-medium hover:text-studio-accent transition-colors">Contact</a>
         <div class="h-px w-1/3 bg-white/20 my-2"></div>
         @auth
-            <a href="{{ route('dashboard') }}" class="text-xl text-studio-accent font-medium">Mon Compte</a>
+            <a href="{{ route('dashboard') }}" class="text-xl text-studio-accent text-glow-accent font-medium">Mon Compte</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="text-xl text-gray-400 hover:text-white transition-colors">Déconnexion</button>
@@ -114,7 +114,7 @@
                 <!-- GAUCHE : Branding -->
                 <div class="md:w-1/3 space-y-6">
                     <a href="{{ route('home') }}" class="block">
-                        <img src="{{ asset('logo.png') }}" alt="O'Made Studio" class="h-12 w-auto object-contain">
+                        <span class="font-mistress text-studio-accent text-glow-accent text-3xl tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">O'Made</span>
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
                         Le studio d'enregistrement de référence à Diegem. Équipement premium, acoustique parfaite et accompagnement sur-mesure.
