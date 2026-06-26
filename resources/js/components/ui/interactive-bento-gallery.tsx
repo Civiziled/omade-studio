@@ -330,11 +330,24 @@ interface InteractiveBentoGalleryProps {
 
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
     const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
-    const [items, setItems] = useState(mediaItems);
+    const [items] = useState(mediaItems);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handlePrev = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
+    };
+
+    const handleNext = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
+        setCurrentIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
+    };
+
+    const currentMedia = items[currentIndex];
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
-            <div className="mb-12 text-center pt-20">
+        <div className="container mx-auto px-4 py-8 max-w-[90rem] relative z-10">
+            <div className="mb-8 text-center pt-20">
                 <motion.h1
                     className="text-2xl sm:text-3xl md:text-5xl font-bold bg-clip-text text-transparent 
                              bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
@@ -356,7 +369,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
             </div>
             
             <AnimatePresence mode="wait">
-                {selectedItem ? (
+                {selectedItem && (
                     <GalleryModal
                         selectedItem={selectedItem}
                         isOpen={true}
@@ -364,67 +377,89 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                         setSelectedItem={setSelectedItem}
                         mediaItems={items}
                     />
-                ) : (
-                    <motion.div
-                        className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 w-full"
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: { staggerChildren: 0.1 }
-                            }
-                        }}
-                    >
-                        {items.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                layoutId={`media-${item.id}`}
-                                className="relative overflow-hidden rounded-2xl cursor-pointer break-inside-avoid mb-4 md:mb-6 shadow-xl group border border-white/5"
-                                onClick={() => setSelectedItem(item)}
-                                variants={{
-                                    hidden: { y: 30, scale: 0.95, opacity: 0 },
-                                    visible: {
-                                        y: 0,
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: "spring",
-                                            stiffness: 350,
-                                            damping: 25,
-                                            delay: index * 0.05
-                                        }
-                                    }
-                                }}
-                                whileHover={{ scale: 1.02 }}
-                            >
-                                <div className="w-full h-auto aspect-auto overflow-hidden">
-                                    <MediaItem
-                                        item={item}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        onClick={() => setSelectedItem(item)}
-                                    />
-                                </div>
-                                
-                                {/* Hover Overlay */}
-                                <motion.div
-                                    className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                                    <h3 className="relative text-white text-lg md:text-xl font-bold tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                        {item.title}
-                                    </h3>
-                                    <p className="relative text-white/70 text-sm mt-1 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
-                                        {item.desc}
-                                    </p>
-                                </motion.div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Cinematic Featured Carousel */}
+            <div className="w-full flex flex-col gap-4">
+                <div className="relative w-full aspect-video md:aspect-[21/9] bg-black rounded-2xl md:rounded-[2rem] overflow-hidden group shadow-2xl border border-white/10">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentMedia.id}
+                            initial={{ opacity: 0, scale: 1.05 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            className="absolute inset-0 w-full h-full cursor-pointer"
+                            onClick={() => setSelectedItem(currentMedia)}
+                        >
+                            <MediaItem
+                                item={currentMedia}
+                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            />
+                            
+                            {/* Gradient overlay for text */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                            
+                            {/* Info */}
+                            <div className="absolute bottom-0 left-0 p-6 md:p-12 pointer-events-none">
+                                <motion.h3 
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-white text-2xl md:text-5xl font-bold mb-2 md:mb-4 tracking-wide"
+                                >
+                                    {currentMedia.title}
+                                </motion.h3>
+                                <motion.p 
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="text-white/80 text-sm md:text-lg max-w-2xl"
+                                >
+                                    {currentMedia.desc}
+                                </motion.p>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Navigation Buttons */}
+                    <button 
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-md transition-all z-20 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
+                        onClick={handlePrev}
+                    >
+                        <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
+                    <button 
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 md:p-4 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-md transition-all z-20 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0"
+                        onClick={handleNext}
+                    >
+                        <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                    </button>
+                    
+                    {/* Fullscreen Hint */}
+                    <div className="absolute top-4 right-4 md:top-8 md:right-8 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full text-white/80 text-xs md:text-sm tracking-widest uppercase flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        Cliquez pour agrandir
+                    </div>
+                </div>
+
+                {/* Thumbnails Strip */}
+                <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide py-2 px-1">
+                    {items.map((item, idx) => (
+                        <button
+                            key={item.id}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`relative flex-shrink-0 w-24 h-16 md:w-40 md:h-24 rounded-xl overflow-hidden transition-all duration-300 ${
+                                currentIndex === idx 
+                                    ? 'ring-2 ring-studio-accent ring-offset-2 ring-offset-black scale-105 opacity-100' 
+                                    : 'opacity-50 hover:opacity-80 hover:scale-105'
+                            }`}
+                        >
+                            <MediaItem item={item} className="w-full h-full object-cover" />
+                        </button>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
