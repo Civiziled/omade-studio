@@ -331,11 +331,10 @@ interface InteractiveBentoGalleryProps {
 const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ mediaItems, title, description }) => {
     const [selectedItem, setSelectedItem] = useState<MediaItemType | null>(null);
     const [items, setItems] = useState(mediaItems);
-    const [isDragging, setIsDragging] = useState(false);
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl relative z-10">
-            <div className="mb-8 text-center pt-20">
+        <div className="container mx-auto px-4 py-8 max-w-7xl relative z-10">
+            <div className="mb-12 text-center pt-20">
                 <motion.h1
                     className="text-2xl sm:text-3xl md:text-5xl font-bold bg-clip-text text-transparent 
                              bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900
@@ -355,6 +354,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                     {description}
                 </motion.p>
             </div>
+            
             <AnimatePresence mode="wait">
                 {selectedItem ? (
                     <GalleryModal
@@ -366,7 +366,7 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                     />
                 ) : (
                     <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[250px] md:auto-rows-[300px]"
+                        className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 w-full"
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
@@ -382,10 +382,10 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                             <motion.div
                                 key={item.id}
                                 layoutId={`media-${item.id}`}
-                                className={`relative overflow-hidden rounded-3xl cursor-move ${item.span}`}
-                                onClick={() => !isDragging && setSelectedItem(item)}
+                                className="relative overflow-hidden rounded-2xl cursor-pointer break-inside-avoid mb-4 md:mb-6 shadow-xl group border border-white/5"
+                                onClick={() => setSelectedItem(item)}
                                 variants={{
-                                    hidden: { y: 50, scale: 0.9, opacity: 0 },
+                                    hidden: { y: 30, scale: 0.95, opacity: 0 },
                                     visible: {
                                         y: 0,
                                         scale: 1,
@@ -399,45 +399,26 @@ const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = ({ media
                                     }
                                 }}
                                 whileHover={{ scale: 1.02 }}
-                                drag
-                                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                                dragElastic={1}
-                                onDragStart={() => setIsDragging(true)}
-                                onDragEnd={(e, info) => {
-                                    setIsDragging(false);
-                                    const moveDistance = info.offset.x + info.offset.y;
-                                    if (Math.abs(moveDistance) > 50) {
-                                        const newItems = [...items];
-                                        const draggedItem = newItems[index];
-                                        const targetIndex = moveDistance > 0 ?
-                                            Math.min(index + 1, items.length - 1) :
-                                            Math.max(index - 1, 0);
-                                        newItems.splice(index, 1);
-                                        newItems.splice(targetIndex, 0, draggedItem);
-                                        setItems(newItems);
-                                    }
-                                }}
                             >
-                                <MediaItem
-                                    item={item}
-                                    className="absolute inset-0 w-full h-full"
-                                    onClick={() => !isDragging && setSelectedItem(item)}
-                                />
+                                <div className="w-full h-auto aspect-auto overflow-hidden">
+                                    <MediaItem
+                                        item={item}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        onClick={() => setSelectedItem(item)}
+                                    />
+                                </div>
+                                
+                                {/* Hover Overlay */}
                                 <motion.div
-                                    className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4 pointer-events-none"
-                                    initial={{ opacity: 0 }}
-                                    whileHover={{ opacity: 1 }}
-                                    transition={{ duration: 0.2 }}
+                                    className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                                 >
-                                    <div className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                                        <h3 className="relative text-white text-lg sm:text-xl md:text-2xl font-semibold line-clamp-1">
-                                            {item.title}
-                                        </h3>
-                                        <p className="relative text-white/70 text-xs sm:text-sm md:text-base mt-1 line-clamp-2">
-                                            {item.desc}
-                                        </p>
-                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                                    <h3 className="relative text-white text-lg md:text-xl font-bold tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        {item.title}
+                                    </h3>
+                                    <p className="relative text-white/70 text-sm mt-1 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
+                                        {item.desc}
+                                    </p>
                                 </motion.div>
                             </motion.div>
                         ))}
