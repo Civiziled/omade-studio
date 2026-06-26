@@ -17,10 +17,17 @@
     --color-studio-accent: #b8a892;
 }
 
+@font-face {
+    font-family: 'Kollegaly Rosalina';
+    src: url('/fonts/KollegalyRosalina.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 @layer utilities {
-    .font-mistress {
-        font-family: 'Mistress Italic', '1845 Mistress Italic', 'Great Vibes', cursive;
-        /* Adjusted fallback weight and tracking to look elegant */
+    .font-logo {
+        font-family: 'Kollegaly Rosalina', cursive;
         font-weight: normal;
     }
     
