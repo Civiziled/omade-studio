@@ -20,10 +20,23 @@
 @layer utilities {
     .font-mistress {
         font-family: 'Mistress Italic', '1845 Mistress Italic', 'Great Vibes', cursive;
+        /* Adjusted fallback weight and tracking to look elegant */
+        font-weight: normal;
     }
     
     .text-glow-accent {
-        text-shadow: 0 0 10px rgba(184,168,146, 0.7), 0 0 20px rgba(184,168,146, 0.4), 0 0 30px rgba(184,168,146, 0.2);
+        text-shadow: 0 0 10px rgba(184, 168, 146, 0.4), 
+                     0 0 20px rgba(184, 168, 146, 0.2), 
+                     0 0 30px rgba(184, 168, 146, 0.1);
+    }
+
+    .logo-metallic {
+        background: linear-gradient(to bottom, #ffffff 0%, #d5c8b5 40%, #a0907a 80%, #6e6150 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.7)) drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.5));
     }
 }
 

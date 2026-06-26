@@ -25,7 +25,7 @@
     <header class="absolute top-0 left-0 w-full z-50 p-6 mix-blend-difference">
         <nav class="flex justify-between items-center max-w-7xl mx-auto">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <span class="font-mistress text-studio-accent text-glow-accent text-3xl md:text-4xl tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">O'Made</span>
+                <span class="font-mistress logo-metallic text-4xl md:text-5xl tracking-widest">O'made</span>
             </a>
             
             <!-- Desktop Menu -->
@@ -62,7 +62,7 @@
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <a href="{{ route('home') }}" class="mb-4">
-            <span class="font-mistress text-studio-accent text-glow-accent text-4xl tracking-widest">O'Made</span>
+            <span class="font-mistress logo-metallic text-5xl tracking-widest">O'made</span>
         </a>
         
         <a href="{{ route('gallery') }}" class="text-xl font-medium hover:text-studio-accent transition-colors">Galerie</a>
@@ -114,7 +114,7 @@
                 <!-- GAUCHE : Branding -->
                 <div class="md:w-1/3 space-y-6">
                     <a href="{{ route('home') }}" class="block">
-                        <span class="font-mistress text-studio-accent text-glow-accent text-3xl tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">O'Made</span>
+                        <span class="font-mistress logo-metallic text-4xl tracking-widest">O'made</span>
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
                         Le studio d'enregistrement de référence à Diegem. Équipement premium, acoustique parfaite et accompagnement sur-mesure.
