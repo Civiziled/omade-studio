@@ -39,7 +39,6 @@ function initGallery() {
             const root = createRoot(rootElement);
             root.render(
                 <React.StrictMode>
-                    <div className="absolute top-0 left-0 bg-green-500 text-white z-50 p-2 text-xs">React Mounted Successfully! Medias Count: {mediaItems.length}</div>
                     <InteractiveBentoGallery 
                         mediaItems={mediaItems} 
                         title="Notre Espace" 
